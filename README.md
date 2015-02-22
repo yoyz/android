@@ -22,6 +22,11 @@ root@yoyz-laptop:~/ adb  start-server
 * daemon started successfully *
 
 
-t@yoyz-laptop:~/ adb shell
+roott@yoyz-laptop:~/ adb shell
 root@android:/ # 
 
+
+
+
+Here is the SDL port 
+https://github.com/pelya/commandergenius
