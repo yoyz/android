@@ -1,0 +1,6 @@
+# cd SDL2-2.0.3/build-scripts/
+# grep  -n "android update project " androidbuild.sh
+# echo "Put target on this line   in androidbuild.sh
+# android list target
+# ./androidbuild.sh org.libsdl.testgles ../test/testgles.c
+# adb install /home/yoyz/build/android/SDL2-2.0.3/build/org.libsdl.testgles/bin/org.libsdl.testgles-debug.apk
