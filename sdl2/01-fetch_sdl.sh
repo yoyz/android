@@ -1,6 +1,10 @@
 #!/bin/bash
 echo "Clone SDL"
 hg clone http://hg.libsdl.org/SDL SDL
+
+echo "Clone SDL image" 
+hg clone http://hg.libsdl.org/SDL_image SDL2_image
+
 echo "Clone SDL mixer" 
 hg clone http://hg.libsdl.org/SDL_mixer SDL2_mixer
 
