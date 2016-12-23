@@ -12,6 +12,7 @@
 
 
 static int on;
+
 void start_process() {
   OPENSL_STREAM  *p;
   int samps, i, j;
@@ -27,6 +28,12 @@ void start_process() {
   }
   android_CloseAudioDevice(p);
 }
+
+static int thread_start_process(void *ptr)
+{
+	start_process();
+}
+
 
 void stop_process(){
   on = 0;
@@ -85,6 +92,8 @@ int main(int argc, char *argv[])
 {
     SDL_Window *window;
     SDL_Renderer *renderer;
+    SDL_Thread *thread;
+    int         threadReturnValue;
 
     if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
         exit(2);
@@ -103,9 +112,9 @@ int main(int argc, char *argv[])
         while(SDL_PollEvent(&event))
 		{
             if(event.type == SDL_QUIT || event.type == SDL_KEYDOWN || event.type == SDL_FINGERDOWN)
-			{
-                done = 1;
-            }
+		{
+                	done = 1;
+            	}
         }
 		
 		
@@ -120,11 +129,15 @@ int main(int argc, char *argv[])
 		
 		if (audio_started==0)
 		{
-			start_process();
+			//start_process();
+			thread = SDL_CreateThread(thread_start_process, "TestThread", (void *)NULL);
+			audio_started=1;
 		}
-		SDL_Delay(10);
+		SDL_Delay(1);
 		
     }
+    stop_process();
+    SDL_WaitThread(thread, &threadReturnValue);
 
     exit(0);
 }
