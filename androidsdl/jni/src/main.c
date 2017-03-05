@@ -101,6 +101,14 @@ int main(int argc, char *argv[])
   Uint8         done = 0;
   SDL_Event     event;
   int           audio_started=0;
+
+  SDL_Joystick *joystick;
+
+   if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
+       SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s\n", SDL_GetError());
+       exit(1);
+   }
+  joystick = SDL_JoystickOpen(0);
   
   if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
     exit(2);
@@ -139,6 +147,16 @@ int main(int argc, char *argv[])
 	      touch_x = event.tfinger.x;
 	      touch_y = event.tfinger.y; 
 	    }
+          if (event.type == SDL_JOYAXISMOTION)
+            { 
+              if(event.jaxis.axis == 0 && event.jaxis.value < - 100)
+                done=1;
+            }
+          if (event.type == SDL_JOYBUTTONDOWN)
+            { 
+                done=1;
+            }
+
 	}
       
       
