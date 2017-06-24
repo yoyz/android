@@ -10,11 +10,11 @@ LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include
 
 # Add your application source files here...
 LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
-	main.c opensl_io.c
+	main.cpp opensl_io.c
 #testgles.c
 
-LOCAL_SHARED_LIBRARIES := SDL2
+LOCAL_SHARED_LIBRARIES := SDL2 pbsynth
 
-LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog -lOpenSLES
+LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog -lOpenSLES 
 
 include $(BUILD_SHARED_LIBRARY)
