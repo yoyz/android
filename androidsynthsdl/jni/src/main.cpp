@@ -5,16 +5,21 @@
 #include "SDL.h"
 #include "opensl_io.h"
 
-#define BUFFERFRAMES 1024
-#define VECSAMPS_MONO 64
-#define VECSAMPS_STEREO 128
-#define SR 44100
+
+#define NBSAMPLE        64
+#define BUFFERFRAMES    1024
+#define VECSAMPS_MONO   NBSAMPLE
+#define VECSAMPS_STEREO NBSAMPLE*2
+#define SR              44100
 
 
 
 static int on;
 float  touch_x=0.5;
 float  touch_y=0.5;
+int    trig=0;
+int    trigged=0;
+int    motion=0;
 /*
 void start_process()
 {
@@ -35,16 +40,14 @@ void start_process()
 */
 void start_process()
 {
-  int nbuff=64;
+  int nbuff=NBSAMPLE;
   int sample=0;
-  SynthEngine SE(nbuff,64);
+  SynthEngine SE(nbuff,NBSAMPLE);
   SE.init();
 
 
   SE.setParameter(SENGINE_FILTFREQ,0.9f);
   SE.setParameter(SENGINE_FILTRESO,0.5f);
-  // SE.getEnvelope(0)->setADSR(-1.0f, -1.0f, 1.0f, -1.0f);
-  // SE.getEnvelope(1)->setADSR(-1.0f, -1.0f, 1.0f, -1.0f);
 
   SE.getEnvelope(0)->setADSR(-0.0f, -1.0f, 1.0f, -0.2f);
   SE.getEnvelope(1)->setADSR(-0.0f, -0.5f, 0.5f, -0.8f);
@@ -59,27 +62,30 @@ void start_process()
   if(p == NULL) return;
   on = 1;
   while(on) {
-    if (sample==0)
+    if (trig==1 && trigged==0)
       {
 	SE.triggerNote(touch_x*80);
 	SE.setParameter(SENGINE_FILTFREQ,touch_y);
+	trigged=1;
+      }
+    if (motion)
+      {
+	SE.setParameter(SENGINE_FILTFREQ,touch_y*0.8);
+	motion=0;
       }
     samps = android_AudioIn(p,inbuffer,VECSAMPS_MONO);
     SE.process(inbuffer,nbuff);
-    //for(i = 0, j=0; i < samps; i++, j+=)2
+    
     for(i = 0, j=0; i < nbuff; i++, j+=2)
       outbuffer[j] = outbuffer[j+1] = inbuffer[i];
     android_AudioOut(p,outbuffer,samps*2);
     sample=sample+nbuff;
-    if (sample>10000)
+
+    if (trig==0 && trigged==1)
       {
 	SE.releaseNote();
+	trigged=0;
       }
-    if (sample>20000)
-      {
-	sample=0;
-      }
-	
   }
   android_CloseAudioDevice(p);
 }
@@ -195,11 +201,24 @@ int main(int argc, char *argv[])
 	  if(event.type == SDL_QUIT)
 	    done=1;
 
-	  //if (event.type == SDL_FINGERDOWN)
+	  if (event.type == SDL_FINGERDOWN)
+	    {
+	      touch_x = event.tfinger.x;
+	      touch_y = event.tfinger.y;
+	      trig=1;
+	    }
+	  if (event.type == SDL_FINGERUP)
+	    {
+	      touch_x = event.tfinger.x;
+	      touch_y = event.tfinger.y;
+	      trig=0;
+	    }
+
 	  if (event.type == SDL_FINGERMOTION)
 	    {
 	      touch_x = event.tfinger.x;
-	      touch_y = event.tfinger.y; 
+	      touch_y = event.tfinger.y;
+	      motion=1;
 	    }
           if (event.type == SDL_JOYAXISMOTION)
             { 
