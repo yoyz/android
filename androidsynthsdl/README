@@ -1,11 +1,15 @@
 COMPILATION
 ===========
 
+Double check the SDK path in the file : 
+	local.properties 
+		sdk.dir=/home/peyrardj/local/android-sdk-linux/
+
 source ~/local/env_android
 ndk-build
 ant debug
-ll          /home/yoyz/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
-adb install /home/yoyz/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
+ll		     ~/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
+adb install          ~/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
 
 CLEANUP
 =======
