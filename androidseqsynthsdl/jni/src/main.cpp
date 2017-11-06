@@ -38,19 +38,23 @@ void start_process()
   android_CloseAudioDevice(p);
 }
 */
+/*
 void start_process()
 {
   int nbuff=NBSAMPLE;
-  int sample=0;
+  int sample=0; 
   SynthEngine SE(nbuff,NBSAMPLE);
   SE.init();
+  //int tab[12]={0,1,2,3,4,5,6,7,8,9,10,11};
+  int tab[12]={0,0,2,3,3,5,5,7,8,8,10,10};
+  int index;
 
 
   SE.setParameter(SENGINE_FILTFREQ,0.9f);
-  SE.setParameter(SENGINE_FILTRESO,0.5f);
+  SE.setParameter(SENGINE_FILTRESO,0.1f);
 
-  SE.getEnvelope(0)->setADSR(-0.0f, -1.0f, 1.0f, -0.2f);
-  SE.getEnvelope(1)->setADSR(-0.0f, -0.5f, 0.5f, -0.8f);
+  SE.getEnvelope(0)->setADSR(-1.0f, -0.0f, 1.0f, -0.4f);
+  SE.getEnvelope(1)->setADSR(-1.0f, -0.0f, 0.5f, -0.8f);
 
 
   OPENSL_STREAM  *p;
@@ -64,15 +68,20 @@ void start_process()
   while(on) {
     if (trig==1 && trigged==0)
       {
-	SE.triggerNote(touch_x*80);
-	SE.setParameter(SENGINE_FILTFREQ,touch_y);
+	index=touch_x*12;
+	SE.triggerNote(42+(tab[index]));
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
 	trigged=1;
       }
     if (motion)
       {
-	SE.setParameter(SENGINE_FILTFREQ,touch_y*0.8);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
 	motion=0;
       }
+    //SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+    SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.0)-0.8);
     samps = android_AudioIn(p,inbuffer,VECSAMPS_MONO);
     SE.process(inbuffer,nbuff);
     
@@ -89,7 +98,108 @@ void start_process()
   }
   android_CloseAudioDevice(p);
 }
+*/
 
+void start_process()
+{
+  int nbuff=NBSAMPLE;
+  int sample=0;
+  SynthEngine * SE[4];
+  int samps, i, j,k;
+  int ce=0;
+  int oldce=0;
+  //SynthEngine ** SE;
+  //SE=new SynthEngine 
+  //int tab[12]={0,1,2,3,4,5,6,7,8,9,10,11};
+  int tab[12]={0,0,2,3,3,5,5,7,8,8,10,10};
+  int index;
+  for (i=0;i<4;i++)
+    {
+      SE[i] = new SynthEngine(nbuff,NBSAMPLE);
+      SE[i]->init();
+      
+      SE[i]->setParameter(SENGINE_FILTFREQ,0.9f);
+      SE[i]->setParameter(SENGINE_FILTRESO,0.1f);
+
+      SE[i]->getEnvelope(0)->setADSR(-1.0f, -0.0f, 1.0f, -0.1f);
+      SE[i]->getEnvelope(1)->setADSR(-1.0f, -0.0f, 0.5f, -0.1f);
+
+      SE[i]->getEcho()->setLevel(float(-0.5));
+      SE[i]->getEcho()->setLevel(float(0.3));
+    }
+
+
+
+  OPENSL_STREAM  *p;
+
+  float  inbuffer[VECSAMPS_MONO];
+  float tmpbuffer[VECSAMPS_MONO];
+  float outbuffer[VECSAMPS_STEREO];
+  //p = android_OpenAudioDevice(SR,1,2,BUFFERFRAMES);
+  //p = android_OpenAudioDevice(SR,0,2,BUFFERFRAMES);
+  p = android_OpenAudioDevice(SR,1,2,BUFFERFRAMES);
+  if(p == NULL) return;
+  on = 1;
+  while(on) {
+    if (trig==1 && trigged==0)
+      {
+	index=touch_x*12;
+	SE[ce]->triggerNote(42+(tab[index]));
+	SE[ce]->setParameter(SENGINE_FILTFREQ,(touch_y*1.0)-0.8);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	trigged=1;
+	oldce=ce;
+	ce++;
+
+      }
+    if (motion)
+      {
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+	motion=0;
+	SE[oldce]->setParameter(SENGINE_FILTFREQ,(touch_y*1.0)-0.8);
+      }
+    //SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+    //SE[ce]->setParameter(SENGINE_FILTFREQ,(touch_y*1.0)-0.8);
+    if (ce>=3)
+      ce=0;
+
+    samps = android_AudioIn(p,inbuffer,VECSAMPS_MONO);
+
+    // cleanup buffer
+    for(i = 0 ; i < nbuff; i++)
+      for (k=0;k<4;k++)
+	tmpbuffer[i]=0;
+	
+    for (k=0;k<4;k++)
+      {
+	SE[k]->process(inbuffer,nbuff);    
+
+	for(i = 0 ; i < nbuff; i++)
+	  tmpbuffer[i]=tmpbuffer[i]+(inbuffer[i]/2.0);	
+      }
+
+    for(i = 0 ; i < nbuff; i++)
+      {
+	if (tmpbuffer[i]>=1) tmpbuffer[i]=0.99;
+	if (tmpbuffer[i]<=-1.0) tmpbuffer[i]=-0.99;
+      }
+
+    for(i = 0, j=0; i < nbuff; i++, j+=2)
+      outbuffer[j] = outbuffer[j+1] = tmpbuffer[i];
+
+    android_AudioOut(p,outbuffer,samps*2);
+    sample=sample+nbuff;
+
+    if (trig==0 && trigged==1)
+      {
+	SE[oldce]->releaseNote();
+	trigged=0;
+      }
+  }
+  android_CloseAudioDevice(p);
+}
 
 static int thread_start_process(void *ptr)
 {
