@@ -13,7 +13,7 @@ APP_CPPFLAGS += -std=c++11
 #APP_STL := gnustl_static
 LOCAL_C_INCLUDES += ${ANDROID_NDK}/sources/cxx-stl/gnu-libstdc++/4.9/include
 #APP_STL := c++_shared 
-#APP_STL := c++_shared 
+APP_STL := c++_shared 
 #APP_STL:=c++_static 
 # Min SDK level
 APP_PLATFORM=android-10

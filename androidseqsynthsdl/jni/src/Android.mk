@@ -13,7 +13,7 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
 	main.cpp opensl_io.c
 #testgles.c
 
-LOCAL_SHARED_LIBRARIES := SDL2 pbsynth
+LOCAL_SHARED_LIBRARIES := SDL2 pbsynth cursynth
 
 LOCAL_LDLIBS := -lGLESv1_CM -lGLESv2 -llog -lOpenSLES 
 

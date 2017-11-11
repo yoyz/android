@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "../pbsynth/synthengine.h"
+#include "../Cursynth/cursynth_engine.h"
 #include "SDL.h"
 #include "opensl_io.h"
 
@@ -104,13 +105,13 @@ void start_process()
 {
   int nbuff=NBSAMPLE;
   int sample=0;
+  static int note[4];
   SynthEngine * SE[4];
+  mopocursynth::CursynthEngine * CSE[4];
+  //mopocursynth::CursynthEngine CSE;
   int samps, i, j,k;
   int ce=0;
   int oldce=0;
-  //SynthEngine ** SE;
-  //SE=new SynthEngine 
-  //int tab[12]={0,1,2,3,4,5,6,7,8,9,10,11};
   int tab[12]={0,0,2,3,3,5,5,7,8,8,10,10};
   int index;
   for (i=0;i<4;i++)
@@ -126,6 +127,11 @@ void start_process()
 
       SE[i]->getEcho()->setLevel(float(-0.5));
       SE[i]->getEcho()->setLevel(float(0.3));
+
+      CSE[i] = new mopocursynth::CursynthEngine();
+      CSE[i]->setBufferSize(NBSAMPLE);
+
+      CSE[i]->getControls().at("amp release")->set(2.0); // 0..3
     }
 
 
@@ -144,10 +150,12 @@ void start_process()
     if (trig==1 && trigged==0)
       {
 	index=touch_x*12;
-	SE[ce]->triggerNote(42+(tab[index]));
+	note[ce]=42+(tab[index]);
+	SE[ce]->triggerNote(note[ce]);
 	SE[ce]->setParameter(SENGINE_FILTFREQ,(touch_y*1.0)-0.8);
-	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
-	//SE.setParameter(SENGINE_FILTFREQ,(touch_y*1.5)-1.5);
+
+	CSE[ce]->noteOn(note[ce]);
+	CSE[ce]->getControls().at("cutoff")->set(touch_y*100);
 	trigged=1;
 	oldce=ce;
 	ce++;
@@ -174,10 +182,14 @@ void start_process()
 	
     for (k=0;k<4;k++)
       {
-	SE[k]->process(inbuffer,nbuff);    
+	//SE[k]->process(inbuffer,nbuff);
+	CSE[k]->process();
 
 	for(i = 0 ; i < nbuff; i++)
-	  tmpbuffer[i]=tmpbuffer[i]+(inbuffer[i]/2.0);	
+	  {
+	    //tmpbuffer[i]=tmpbuffer[i]+(inbuffer[i]/2.0);
+	    tmpbuffer[i]=tmpbuffer[i]+CSE[k]->output()->buffer[i];
+	  }
       }
 
     for(i = 0 ; i < nbuff; i++)
@@ -195,6 +207,7 @@ void start_process()
     if (trig==0 && trigged==1)
       {
 	SE[oldce]->releaseNote();
+	CSE[oldce]->noteOff(note[oldce]);
 	trigged=0;
       }
   }
