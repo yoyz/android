@@ -1,2 +1,2 @@
-/home/peyrardj/build/android/android/androidsynthsdl/bin/AndroidManifest.xml : \
-/home/peyrardj/build/android/android/androidsynthsdl/AndroidManifest.xml \
+/home/peyrardj/build/android/android/androidseqsynthsdl/bin/AndroidManifest.xml : \
+/home/peyrardj/build/android/android/androidseqsynthsdl/AndroidManifest.xml \
