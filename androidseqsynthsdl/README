@@ -8,8 +8,8 @@ Double check the SDK path in the file :
 source ~/local/env_android
 ndk-build
 ant debug
-ll		     ~/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
-adb install          ~/build/android/android/androidsynthsdl/bin/org.libsdl.testgles-debug.apk
+ll		                                             bin/org.libsdl.testgles-debug.apk
+adb install -r                                               bin/org.libsdl.testgles-debug.apk
 
 CLEANUP
 =======
