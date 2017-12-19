@@ -1,0 +1,12 @@
+As root
+=======
+# adb kill-server
+# adb devices -l
+
+As user
+=======
+
+$ ./gradlew assembleDebug
+$ ls ./app/build/outputs/apk/app-debug.apk
+$ ./gradlew clean
+
