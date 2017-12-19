@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:38
+-keep class org.libsdl.testgles.testglesActivity { <init>(...); }
+

@@ -1,0 +1,1090 @@
+<!DOCTYPE html> <!--[if IE 7]><html
+class="ie ie7" lang="en-US" prefix="og: http://ogp.me/ns#"  prefix="og: http://ogp.me/ns#"> <![endif]--> <!--[if IE 8]><html
+class="ie ie8" lang="en-US" prefix="og: http://ogp.me/ns#"  prefix="og: http://ogp.me/ns#"> <![endif]--> <!--[if !(IE 7) & !(IE 8)]><!--><html
+lang="en-US" prefix="og: http://ogp.me/ns#"  prefix="og: http://ogp.me/ns#"> <!--<![endif]--><head><link
+rel='stylesheet' href='http://www.dinomage.com/wp-content/plugins/wp-minify/min/?f=wp-content/plugins/wp-to-twitter/css/twitter-feed.css,wp-content/plugins/wp-lightbox-2/styles/lightbox.min.css,wp-content/themes/twentythirteen/genericons/genericons.css,wp-content/themes/twentythirteen/style.css,wp-content/plugins/image-pro-wordpress-image-media-management-and-resizing-done-right/src/editor-styles.css&amp;m=1472779364' type='text/css' media='screen' /> <script type='text/javascript' src='http://www.dinomage.com/wp-content/plugins/wp-minify/min/?f=wp-includes/js/jquery/jquery.js,wp-includes/js/jquery/jquery-migrate.min.js&amp;m=1472779178'></script> <meta
+charset="UTF-8"><meta
+name="viewport" content="width=device-width"><title>HowTo: SDL on Android part 1 - Setup - DinoMage Games</title><link
+rel="profile" href="http://gmpg.org/xfn/11"><link
+rel="pingback" href="http://www.dinomage.com/xmlrpc.php"> <!--[if lt IE 9]> <script src="http://www.dinomage.com/wp-content/themes/twentythirteen/js/html5.js"></script> <![endif]--><link
+rel="canonical" href="http://www.dinomage.com/2013/01/howto-sdl-on-android/" /><meta
+property="og:locale" content="en_US" /><meta
+property="og:type" content="article" /><meta
+property="og:title" content="HowTo: SDL on Android part 1 - Setup - DinoMage Games" /><meta
+property="og:description" content="This is part 1 of my HowTo: SDL on Android series. (next) I&#8217;ve been recently wanting to get into mobile development.  How does one do that? Well, your main options are iOS (iPod, iPhone, or iPad), Windows Phone (7 or 8), BlackBerry (BlackBerry smartphones, PlayBook), and Android (most of the other devices on the market). &hellip; Continue reading HowTo: SDL on Android part 1 &#8211; Setup &rarr;" /><meta
+property="og:url" content="http://www.dinomage.com/2013/01/howto-sdl-on-android/" /><meta
+property="og:site_name" content="DinoMage Games" /><meta
+property="article:section" content="Android" /><meta
+property="article:published_time" content="2013-01-07T14:56:23-05:00" /><meta
+property="article:modified_time" content="2015-01-09T12:52:29-05:00" /><meta
+property="og:updated_time" content="2015-01-09T12:52:29-05:00" /><meta
+property="og:image" content="http://www.dinomage.com/wp-content/uploads/2013/01/image.bmp" /><link
+rel='dns-prefetch' href='//fonts.googleapis.com' /><link
+rel='dns-prefetch' href='//s.w.org' /><link
+rel="alternate" type="application/rss+xml" title="DinoMage Games &raquo; Feed" href="http://www.dinomage.com/feed/" /><link
+rel="alternate" type="application/rss+xml" title="DinoMage Games &raquo; Comments Feed" href="http://www.dinomage.com/comments/feed/" /><link
+rel="alternate" type="application/rss+xml" title="DinoMage Games &raquo; HowTo: SDL on Android part 1 &#8211; Setup Comments Feed" href="http://www.dinomage.com/2013/01/howto-sdl-on-android/feed/" /> <script type="text/javascript">window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.dinomage.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);</script> <style type="text/css">img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}</style><link
+rel='stylesheet' id='twentythirteen-fonts-css'  href='https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A300%2C400%2C700%2C300italic%2C400italic%2C700italic%7CBitter%3A400%2C700&#038;subset=latin%2Clatin-ext' type='text/css' media='all' /> <!--[if lt IE 9]><link
+rel='stylesheet' id='twentythirteen-ie-css'  href='http://www.dinomage.com/wp-content/themes/twentythirteen/css/ie.css?ver=2013-07-18' type='text/css' media='all' /> <![endif]--><link
+rel='https://api.w.org/' href='http://www.dinomage.com/wp-json/' /><link
+rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.dinomage.com/xmlrpc.php?rsd" /><link
+rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://www.dinomage.com/wp-includes/wlwmanifest.xml" /><meta
+name="generator" content="WordPress 4.6.1" /><link
+rel='shortlink' href='http://www.dinomage.com/?p=946' /><link
+rel="alternate" type="application/json+oembed" href="http://www.dinomage.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.dinomage.com%2F2013%2F01%2Fhowto-sdl-on-android%2F" /><link
+rel="alternate" type="text/xml+oembed" href="http://www.dinomage.com/wp-json/oembed/1.0/embed?url=http%3A%2F%2Fwww.dinomage.com%2F2013%2F01%2Fhowto-sdl-on-android%2F&#038;format=xml" /><meta
+property="og:locale" content="en_US" /><meta
+property="og:site_name" content="DinoMage Games - Games for everyone!" /><meta
+property="fb:admins" content="46600761" /><meta
+property="og:type" content="article" /><meta
+property="og:title" content="HowTo: SDL on Android part 1 - Setup"/><meta
+property="og:url" content="http://www.dinomage.com/2013/01/howto-sdl-on-android/" /><meta
+property="og:image" content="http://www.dinomage.com/wp-content/uploads/2013/01/image.bmp" /><meta
+name="description" content="This is part 1 of my HowTo: SDL on Android series.   (next)      I&#039;ve been recently wanting to get into mobile development.  How does one do that?      Well, your main options are iOS (iPod, iPhone, or iPad), Windows Phone (7 or 8), BlackBerry (BlackBerry ..." /><meta
+property="og:description" content="This is part 1 of my HowTo: SDL on Android series.   (next)      I&#039;ve been recently wanting to get into mobile development.  How does one do that?      Well, your main options are iOS (iPod, iPhone, or iPad), Windows Phone (7 or 8), BlackBerry (BlackBerry ..." /> <style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style><style type="text/css" id="twentythirteen-header-css">.site-title,
+		.site-description {
+			position: absolute;
+			clip: rect(1px 1px 1px 1px); /* IE7 */
+			clip: rect(1px, 1px, 1px, 1px);
+		}
+			.site-header .home-link {
+			min-height: 0;
+		}</style><style type="text/css" id="syntaxhighlighteranchor"></style></head><body
+class="single single-post postid-946 single-format-standard single-author sidebar"><div
+id="page" class="hfeed site"> <header
+id="masthead" class="site-header" role="banner"> <a
+class="home-link" href="http://www.dinomage.com/" title="DinoMage Games" rel="home"><h1 class="site-title">DinoMage Games</h1><h2 class="site-description">Games for everyone!</h2> </a><div
+id="navbar" class="navbar"> <nav
+id="site-navigation" class="navigation main-navigation" role="navigation"> <button
+class="menu-toggle">Menu</button> <a
+class="screen-reader-text skip-link" href="#content" title="Skip to content">Skip to content</a><div
+id="primary-menu" class="nav-menu"><ul><li
+class="page_item page-item-679"><a
+href="http://www.dinomage.com/">DinoMage Games</a></li><li
+class="page_item page-item-1162"><a
+href="http://www.dinomage.com/privacy/">Privacy Policy for Apps</a></li><li
+class="page_item page-item-1199"><a
+href="http://www.dinomage.com/tangible-math/">Tangible Math &#8211; Math Manipulatives App</a></li><li
+class="page_item page-item-681 current_page_parent"><a
+href="http://www.dinomage.com/blog/">Blog</a></li><li
+class="page_item page-item-700"><a
+href="http://www.dinomage.com/games/">Games</a></li><li
+class="page_item page-item-693"><a
+href="http://www.dinomage.com/about/">About Us</a></li></ul></div><form
+role="search" method="get" class="search-form" action="http://www.dinomage.com/"> <label> <span
+class="screen-reader-text">Search for:</span> <input
+type="search" class="search-field" placeholder="Search &hellip;" value="" name="s" /> </label> <input
+type="submit" class="search-submit" value="Search" /></form> </nav></div> </header><div
+id="main" class="site-main"><div
+id="primary" class="content-area"><div
+id="content" class="site-content" role="main"> <article
+id="post-946" class="post-946 post type-post status-publish format-standard hentry category-android-2 category-dev category-tutorials"> <header
+class="entry-header"><h1 class="entry-title">HowTo: SDL on Android part 1 &#8211; Setup</h1><div
+class="entry-meta"> <span
+class="date"><a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/" title="Permalink to HowTo: SDL on Android part 1 &#8211; Setup" rel="bookmark"><time
+class="entry-date" datetime="2013-01-07T14:56:23+00:00">January 7, 2013</time></a></span><span
+class="categories-links"><a
+href="http://www.dinomage.com/category/android-2/" rel="category tag">Android</a>, <a
+href="http://www.dinomage.com/category/dev/" rel="category tag">Dev</a>, <a
+href="http://www.dinomage.com/category/tutorials/" rel="category tag">Tutorials</a></span><span
+class="author vcard"><a
+class="url fn n" href="http://www.dinomage.com/author/jonny-d/" title="View all posts by Jonny D" rel="author">Jonny D</a></span></div> </header><div
+class="entry-content"><p>This is part 1 of my HowTo: SDL on Android series.<br
+/> (<a
+title="HowTo: SDL on Android part 2 – Platform details" href="http://www.dinomage.com/2013/05/howto-sdl-on-android-part-2-platform-details/">next</a>)</p><p>I&#8217;ve been recently wanting to get into mobile development.  How does one do that?</p><p>Well, your main options are iOS (iPod, iPhone, or iPad), Windows Phone (7 or 8), BlackBerry (BlackBerry smartphones, PlayBook), and Android (most of the other devices on the market).  I had always leaned toward Android as it&#8217;s slightly more open than the others.  Also, we&#8217;ve been looking at getting a Kindle Fire HD sometime. So, we finally made the decision and bought a Kindle Fire HD 7&#8243;.  It&#8217;s a decent tablet, but I want to make games!</p><p>My experience and codebase is all based on SDL.  The SDL devs have done a lot of work recently getting the new version of SDL working nicely on mobile platforms.  I had barely messed with SDL 2.0 before this, so I really had to jump all in. This will be a work-in-progress tutorial-style post as I document the path I take to get started and get my existing code ported. <span
+id="more-946"></span></p><h2 style="text-align: center;">Setting Up for Android Dev</h2><p>The first step is getting your dev environment ready for Android development.  Android dev is done in Java, but we&#8217;ll be using the Java Native Interface (JNI) to work in C and C++ instead.</p><p>The process here is not too bad but it takes some time and patience.  You just follow along with the official documentation.</p><p>The developer.android.com website has <a
+href="http://developer.android.com/sdk/installing/bundle.html">instructions</a> and hosts the <a
+href="http://developer.android.com/sdk/index.html">ADT bundle</a> (Android Developer Tools), SDK (Software Development Kit &#8211; included in ADT bundle), and <a
+href="http://developer.android.com/tools/sdk/ndk/index.html">NDK</a> (Native Development Kit) downloads and describes how to set them up.  The ADT bundle includes the SDK and the Eclipse IDE, which we&#8217;ll be using to do everything.  I use Code::Blocks normally, but it&#8217;s really not a big deal to try out Eclipse.  (I did write a little mouse/touch compatibility code so I can use Code::Blocks and test on Windows/Linux).</p><p>Some devices need a little extra setup, like the Kindle Fire HD.  Amazon has <a
+href="https://developer.amazon.com/sdk/fire/setup.html">info on the details</a>.</p><p>Either way, you need to also set up the <a
+href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">JDK</a> (Java Development Kit).  The instructions recommend JDK 6 (as of writing), I guess.  The only gotcha here is that you need to match the bitness of your OS, JDK, and Eclipse.  I didn&#8217;t manage to get the 64-bit (x64) stuff working on Windows before I got annoyed, so I just used 32-bit (x86) JDK and 32-bit ADT bundle.  On Linux I had no problems.</p><p>Once you get that stuff set up, you should be able to open Eclipse and go to Window &gt; Android SDK Manager.  This is where you&#8217;ll download and install all of the components you need for the Android versions you&#8217;ll be targeting.  The Android SDK Tools and Android SDK Platform-tools are the first to select.  The Kindle Fire HD (old now) uses Android 4.0.3 (API level 15), so I expanded that category and chose the SDK Platform, ARM EABI v7a System Image (for the emulator).  The Fire also needs a few other packages (USB driver, device definitions, Android Support Library, etc. &#8211; see the <a
+href="https://developer.amazon.com/sdk/fire/setup.html">Amazon page</a>).</p><p>Now you have a fully-functional Java development environment for Android!  Hooray for those who use Java!  But I want more&#8230;</p><h2 style="text-align: center;">Setting up SDL2</h2><p>You will need a copy of the SDL source code.&nbsp; You can find a stable version on the <a
+href="http://www.libsdl.org/download-2.0.php">libsdl.org download page</a> or you can use <a
+href="http://mercurial.selenic.com/">Mercurial</a> (hg) to get the bleeding edge (and only lightly tested) stuff.  Mercurial is a revision/version/source control software that the SDL developers use to store the source tree and history.  If you use Mercurial, clone the SDL tree:</p><pre class="brush: plain; title: ; notranslate" title=""> hg clone http://hg.libsdl.org/SDL </pre><p>For TortoiseHG, just use the Clone command and put in the URL (http://hg.libsdl.org/SDL).</p><p>SDL comes with a README.android that describes the way the Android port works.  SDL takes care of the Java stuff that loads up your native code and it comes with a project template (SO HELPFUL!), but you still need to do a little work to get everything linked up.</p><p>The project setup starts with inverting the android-project directory in the SDL folder.  Copy android-project to some place you want your project to live and rename it.  Then copy (or symlink) the whole SDL directory and put it into your project&#8217;s jni directory.  This jni directory and its src child are now the most important directories in your project.  &#8216;jni&#8217; will hold all of the libraries that you need to compile and link in and &#8216;src&#8217; has your project&#8217;s own source code.</p><p>Aside from those directories, three build files are important.  AndroidManifest.xml contains info that describes your app to the Android system, jni/Application.mk has special environment settings, and jni/src/Android.mk tells the NDK how to build your code.</p><h2 style="text-align: center;">Your Very Own Source</h2><p>Time to start your native code.  Create a &#8220;Hello World&#8221; source file, like jni/src/main.c (main.cpp is cool too) and open jni/src/Android.mk.  Change YourSourceHere.c under LOCAL_SRC_FILES to main.c or whatever you named it. You can make sure that it&#8217;s all good now by running ndk-build (ndk-build.cmd on Windows) in your project&#8217;s base directory.  You downloaded the NDK already, right?  If you added the NDK directory to your PATH environment variable, it&#8217;s easy.  Otherwise you have to specify the whole (absolute or relative) path to ndk-build.  On Windows, you can modify PATH in something like Control Panel &gt; System &gt; Advanced System Settings &gt; Environment Variables&#8230; (use semicolons to separate entries and be careful not to ruin it all).</p><p>The ndk-build command should start compiling SDL and give you no trouble at all (perfect world)!  We can&#8217;t really run the result on this system, so&#8230;</p><p>Now that you have the basic structure and you&#8217;re sure it works, you can load it up in Eclipse.  Go to File &gt; New &gt; Project&#8230; and choose Android &gt; Android Project from Existing Code.  Tell it where your project&#8217;s base directory is, then click Finish.  Eclipse might pick up the bare project nested in the copied SDL directory, so uncheck that if it does.  There&#8217;s also an option to &#8220;Copy projects into workspace&#8221;, but that messed things up for me, so you probably shouldn&#8217;t do it.</p><p>After that finishes, you should have a nice, working project in Eclipse.  You can press the green &#8220;Run&#8221; button to test it (it won&#8217;t do much&#8230;) on the emulator or a plugged-in device.</p><h2 style="text-align: center;">An Example Program</h2><p>I&#8217;m not about to write a whole tutorial on SDL 2.0 right here, so I&#8217;ll just drop a demo.  This will at least let you see something on-screen if everything is working right.</p><p>To get there, we have to load an image.  Android makes it a little tougher because all of our data is packed into a .apk that is installed on the device.  However, SDL2 has a nice feature for accessing assets.  If you put stuff into the assets directory of your project, SDL will look there (within the zipped package) when you use a <a
+href="http://wiki.libsdl.org/moin.cgi/SDL_RWFromMem">SDL_RWops</a>.  We can load all sorts of data that way, but SDL goes even further.  SDL_LoadBMP() looks in the assets directory too.  That makes loading images painless.</p><p><a
+href="http://www.dinomage.com/wp-content/uploads/2013/01/main.c">Here&#8217;s the code</a>.</p><p>You can use this in main.c and it <em>should</em> work.  Don&#8217;t forget to put some sort of image.bmp in your assets directory.  Here&#8217;s one of those if you need it:</p><p><a
+href="http://www.dinomage.com/wp-content/uploads/2013/01/image.bmp" rel="lightbox[946]"><img
+class="aligncenter size-full wp-image-976" style="width: 90px; height: 122px;" alt="image" src="http://www.dinomage.com/wp-content/uploads/2013/01/image.bmp" width="90" height="122" data-mce-width="90" data-mce-height="122" /></a></p><h2 style="text-align: center;">Important Settings in AndroidManifest.xml</h2><p>When you&#8217;re satisfied that this stuff actually works, you might be interested in naming the project.  Well, you have to anyway if you want to install another one (Android requires a unique package name/ID for every app).  That process starts in AndroidManifest.xml in the base directory. AndroidManifest.xml is how the app describes itself to the Android system.  The app name, Android-specific settings, and permissions go here.  Android can tell if an app will work on a particular device by some of these settings.</p><p>First, we&#8217;ll individualize our project package.  Near the top of AndroidManifest.xml, you&#8217;ll see the package name &#8220;org.libsdl.app&#8221;.  Change that to something that represents your team and project.  My commercial DinoMage team might use something like &#8220;com.dinomage.test1&#8221;. Moving on down the file, a comment explains the next step.  Look for this:</p><pre class="brush: plain; title: ; notranslate" title=""> &lt;activity android:name=&quot;SDLActivity&quot; </pre><p>And change &#8220;SDLActivity&#8221; to some class name of your choice.  I&#8217;ll use &#8220;MyTest1&#8221;.  Now we have to make a Java activity with that name.  Grab the sample from SDL&#8217;s README.android (it might be different than my version) or here:</p><pre class="brush: plain; title: ; notranslate" title="">package com.gamemaker.game;
+import org.libsdl.app.SDLActivity;
+/*
+ * A sample wrapper class that just calls SDLActivity
+ */
+public class MyGame extends SDLActivity { }</pre><p>Change the package line to match what you chose for your package name and change the class name (MyGame) to yours.  This file will be nested in directories (in the base src directory) according to the package name.  My resulting file would be src/com/dinomage/test1/MyTest1.java. Another important thing in AndroidManifest.xml is the specification of the activity settings.  I have this attribute added to the activity element to enable orientation change events without crashing:</p><pre class="brush: plain; title: ; notranslate" title="">android:configChanges=&quot;keyboardHidden|orientation&quot;</pre><p>Android will, by default, shut down your app and try to restart it if one of these <a
+href="http://developer.android.com/guide/topics/manifest/activity-element.html#config">configChanges</a> occurs and you didn&#8217;t specify in this way that your app can handle it.&nbsp; Thanks to Jesse for pointing out that for targeting Android API level 13 or higher, you need to add screenSize to that OR&#8217;ed configChanges combo.</p><p>And lastly, there are the resource references like @string/app_name.  These are pulled from the res directory (res/values/strings.xml for @string).  You can mess with those too.</p><h2 style="text-align: center;">What is Android.mk?</h2><p>Android.mk is used to drive the build process for your app.  In short, it&#8217;s a Makefile.  This is where you&#8217;ll be making a mess if you need to set your compilation flags, libs, include directories, source file list, etc.  I just have one tip.  In your jni/src/Android.mk, do something like this to pull in all of your source files:</p><pre class="brush: plain; title: ; notranslate" title="">LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
+$(patsubst $(LOCAL_PATH)/%, %, $(wildcard $(LOCAL_PATH)/src/*.cpp)) \
+$(patsubst $(LOCAL_PATH)/%, %, $(wildcard $(LOCAL_PATH)/src/*.c))</pre><h2 style="text-align: center;">Application.mk</h2><p>Application.mk has special settings for the build environment.  Mine just looks like this:</p><pre class="brush: plain; title: ; notranslate" title="">APP_STL := gnustl_static
+APP_ABI := armeabi x86</pre><p>That lets me use the C++ Standard Template Library (STL) and builds two copies of my app, one for ARM and one for x86 (Intel).  You should probably have armeabi-v7a in there too (v7 has FPU support and stuff), but I ran into a bug in Android 4.0 that makes my apps fail to link properly at runtime when armeabi and armeabi-v7a binaries are both in the apk.  That pretty much ruined it for me.</p><h2 style="text-align: center;">Running ndk-build</h2><p>ndk-build is the &#8220;make&#8221; command for Android.  When run on your project&#8217;s base directory, it will compile all of your native code and pump out the binaries we need.  You can run ndk-build from the command line or set it up as an external tool in Eclipse.  When you use adb (via command line or Eclipse&#8217;s &#8220;Run&#8221; or &#8220;Run As&#8230;  Android application&#8221;) to push the app to a device or emulator, these binaries will get wrapped up into the apk.</p><p>If you have anything to add, please let me know in the comments!</p></div> <footer
+class="entry-meta"> </footer> </article> <nav
+class="navigation post-navigation" role="navigation"><h1 class="screen-reader-text">Post navigation</h1><div
+class="nav-links"> <a
+href="http://www.dinomage.com/2012/12/dont-blow-it-in-pbs-off-book/" rel="prev"><span
+class="meta-nav">&larr;</span> Don&#8217;t Blow It! in PBS Off Book</a> <a
+href="http://www.dinomage.com/2013/04/android-app-board-game-apprentice-for-sale/" rel="next">Android app: Board Game Apprentice for sale! <span
+class="meta-nav">&rarr;</span></a></div> </nav><div
+id="comments" class="comments-area"><h2 class="comments-title"> 45 thoughts on &ldquo;<span>HowTo: SDL on Android part 1 &#8211; Setup</span>&rdquo;</h2><ol
+class="comment-list"><li
+id="comment-956" class="comment even thread-even depth-1 parent"> <article
+id="div-comment-956" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/1cfb27148f8975d7cf54d07031ddac7a?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1cfb27148f8975d7cf54d07031ddac7a?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Banefane</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-956"> <time
+datetime="2013-03-10T12:29:31+00:00"> March 10, 2013 at 12:29 pm </time> </a></div> </footer><div
+class="comment-content"><p>Awesome!!Thanks for your charity :).</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=956#respond' onclick='return addComment.moveForm( "div-comment-956", "956", "respond", "946" )' aria-label='Reply to Banefane'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-32272" class="comment odd alt depth-2"> <article
+id="div-comment-32272" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/d03debcf5dc9b854b0be9856c1a3e085?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d03debcf5dc9b854b0be9856c1a3e085?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Nate</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-32272"> <time
+datetime="2014-10-10T16:49:32+00:00"> October 10, 2014 at 4:49 pm </time> </a></div> </footer><div
+class="comment-content"><p>@rosen, this missing symbol error happens when you use ndk of a different architecture than your phone.. if your phone is 32 bit, make sure ndk toolkit is the 32 bit platform version.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=32272#respond' onclick='return addComment.moveForm( "div-comment-32272", "32272", "respond", "946" )' aria-label='Reply to Nate'>Reply</a></div> </article></li></ol></li><li
+id="comment-1249" class="comment even thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-1249" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/905059c3505cf47fc27f4e3ac1252c08?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/905059c3505cf47fc27f4e3ac1252c08?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Wesley</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-1249"> <time
+datetime="2013-05-02T11:19:40+00:00"> May 2, 2013 at 11:19 am </time> </a></div> </footer><div
+class="comment-content"><p>Great tutorial!&nbsp; Hoping for some more stuff about getting OpenGL ES 2.0 up and running.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=1249#respond' onclick='return addComment.moveForm( "div-comment-1249", "1249", "respond", "946" )' aria-label='Reply to Wesley'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-1265" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-1265" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-1265"> <time
+datetime="2013-05-05T14:25:40+00:00"> May 5, 2013 at 2:25 pm </time> </a></div> </footer><div
+class="comment-content"><p>I&#8217;m not using ES 2.0 personally.&nbsp; I&#8217;m sticking with ES 1.1 until I have a real need for shaders, then I&#8217;ll go whole-hog into the programmable pipeline.&nbsp; The default SDL 2.0 AndroidManifest.xml specifies ES 2.0, so if you already are using OpenGL 3+, then it should be no problem getting going.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=1265#respond' onclick='return addComment.moveForm( "div-comment-1265", "1265", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-1760" class="comment even thread-even depth-1"> <article
+id="div-comment-1760" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/9fee890fff0bed51ae3a0e909f0cea2d?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9fee890fff0bed51ae3a0e909f0cea2d?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://ezo-log.xaa.pl' rel='external nofollow' class='url'>Ezo</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-1760"> <time
+datetime="2013-06-18T16:57:48+00:00"> June 18, 2013 at 4:57 pm </time> </a></div> </footer><div
+class="comment-content"><p>Nice tutorial. Thanks!</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=1760#respond' onclick='return addComment.moveForm( "div-comment-1760", "1760", "respond", "946" )' aria-label='Reply to Ezo'>Reply</a></div> </article></li><li
+id="comment-2029" class="comment odd alt thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-2029" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">ggkuron</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-2029"> <time
+datetime="2013-07-17T14:43:11+00:00"> July 17, 2013 at 2:43 pm </time> </a></div> </footer><div
+class="comment-content"><p>Really good tutorial!! I want a tutorial in Japanese like this for more people to know this way of mobile develop . Would I be able to translate this? If possible, I&#8217;d like to publish it on my blog&#8230; Anyway, I appreciate you and your tutorial:)</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=2029#respond' onclick='return addComment.moveForm( "div-comment-2029", "2029", "respond", "946" )' aria-label='Reply to ggkuron'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-2817" class="comment byuser comment-author-jonny-d bypostauthor even depth-2 parent"> <article
+id="div-comment-2817" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-2817"> <time
+datetime="2013-09-01T20:05:58+00:00"> September 1, 2013 at 8:05 pm </time> </a></div> </footer><div
+class="comment-content"><p>Oh yeah, forgot to reply to this&#8230;&nbsp; I don&#8217;t mind at all.&nbsp; If you think it&#8217;s useful info, please share it!</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=2817#respond' onclick='return addComment.moveForm( "div-comment-2817", "2817", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-3914" class="comment odd alt depth-3"> <article
+id="div-comment-3914" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://ggkuron.hatenablog.com/' rel='external nofollow' class='url'>ggkuron</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-3914"> <time
+datetime="2013-10-20T23:32:31+00:00"> October 20, 2013 at 11:32 pm </time> </a></div> </footer><div
+class="comment-content"><p>Thank you! and Sorry for not waiting your answer. Now I&#8217;m looking forward to your successive articles being completed !!</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=3914#respond' onclick='return addComment.moveForm( "div-comment-3914", "3914", "respond", "946" )' aria-label='Reply to ggkuron'>Reply</a></div> </article></li></ol></li></ol></li><li
+id="comment-2280" class="pingback even thread-even depth-1"><div
+class="comment-body"> Pingback: <a
+href='http://jorhlok.net/2013/07/31/from-nix-to-android-with-sdl2-and-sdl_image-using-the-command-line-of-course/' rel='external nofollow' class='url'>From *nix to Android with SDL2 and SDL_image. Using the Command Line of Course! | Jorhlok</a></div></li><li
+id="comment-2581" class="comment odd alt thread-odd thread-alt depth-1"> <article
+id="div-comment-2581" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0066e7716c007bf98b95d7e8b816bb62?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://ggkuron.hatenablog.com/entry/2013/08/02/073940' rel='external nofollow' class='url'>ggkuron</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-2581"> <time
+datetime="2013-08-15T22:14:36+00:00"> August 15, 2013 at 10:14 pm </time> </a></div> </footer><div
+class="comment-content"><p>translated !! Please let me know if there are any problems.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=2581#respond' onclick='return addComment.moveForm( "div-comment-2581", "2581", "respond", "946" )' aria-label='Reply to ggkuron'>Reply</a></div> </article></li><li
+id="comment-2774" class="comment even thread-even depth-1 parent"> <article
+id="div-comment-2774" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/d10beb802351ac5f8781d454211b0e50?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d10beb802351ac5f8781d454211b0e50?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">slouken</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-2774"> <time
+datetime="2013-08-28T11:07:32+00:00"> August 28, 2013 at 11:07 am </time> </a></div> </footer><div
+class="comment-content"><p>Thanks for this tutorial!&nbsp; I&#8217;ve added it to the SDL tutorial wiki:<br
+/> <a
+href="http://wiki.libsdl.org/Tutorials" >http://wiki.libsdl.org/Tutorials</a></p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=2774#respond' onclick='return addComment.moveForm( "div-comment-2774", "2774", "respond", "946" )' aria-label='Reply to slouken'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-2815" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-2815" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-2815"> <time
+datetime="2013-09-01T19:40:33+00:00"> September 1, 2013 at 7:40 pm </time> </a></div> </footer><div
+class="comment-content"><p>It&#8217;s my pleasure, Sam.&nbsp; Thanks for all of your work, too!</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=2815#respond' onclick='return addComment.moveForm( "div-comment-2815", "2815", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-3609" class="comment even thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-3609" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/e9ae6e13e515ceb699a4b5a080aed7fb?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/e9ae6e13e515ceb699a4b5a080aed7fb?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://en.wildservices.net/' rel='external nofollow' class='url'>Denis Bernard</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-3609"> <time
+datetime="2013-10-10T21:58:44+00:00"> October 10, 2013 at 9:58 pm </time> </a></div> </footer><div
+class="comment-content"><p>Hi Jonny, great tutorial, thanks !</p><p>I have written another SDL on Android tutorial that&#8217;s more focussed on the build process itself and making a reusable project template that links libSDL as a static library and with fixes for some of the most problematic with SDL on Android (screen rotation, etc.).</p><p><a
+href="http://en.wildservices.net/2013/10/making-libsdl-2-apps-on-android.html" >http://en.wildservices.net/2013/10/making-libsdl-2-apps-on-android.html</a></p><p>For the user code (i.e. main.c) I have reused your code almost verbatim (with credits!). Please let me know if this is a problem.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=3609#respond' onclick='return addComment.moveForm( "div-comment-3609", "3609", "respond", "946" )' aria-label='Reply to Denis Bernard'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-3670" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-3670" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-3670"> <time
+datetime="2013-10-13T12:26:45+00:00"> October 13, 2013 at 12:26 pm </time> </a></div> </footer><div
+class="comment-content"><p>Totally cool!&nbsp; Let me know if you recommend any specific improvements.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=3670#respond' onclick='return addComment.moveForm( "div-comment-3670", "3670", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-3933" class="comment even thread-even depth-1 parent"> <article
+id="div-comment-3933" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/4b9df88b38bb72c23c9741e31983067e?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4b9df88b38bb72c23c9741e31983067e?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Wolfos</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-3933"> <time
+datetime="2013-10-21T15:08:25+00:00"> October 21, 2013 at 3:08 pm </time> </a></div> </footer><div
+class="comment-content"><p>Your main.c doesn&#8217;t work for me. Just a black screen and then it quits. Can&#8217;t get printf to return anything in LogCat, so I have no idea wether the code is even running or not. It compiles alright, though.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=3933#respond' onclick='return addComment.moveForm( "div-comment-3933", "3933", "respond", "946" )' aria-label='Reply to Wolfos'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-3934" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2 parent"> <article
+id="div-comment-3934" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-3934"> <time
+datetime="2013-10-21T15:31:54+00:00"> October 21, 2013 at 3:31 pm </time> </a></div> </footer><div
+class="comment-content"><p>I just updated the logging section in the next part of this series.&nbsp; Perhaps you can use some of that info to track down the issue.</p><p>You&#8217;ll notice that I used a non-black color to clear the screen.&nbsp; So if you&#8217;re not getting that color, there&#8217;s something wrong with the renderer that is created.&nbsp; You can add some logging to the error checking here.&nbsp; Use SDL_GetError() when there&#8217;s an error to get more description of what went wrong.&nbsp; If that doesn&#8217;t help, I&#8217;d suggest that there&#8217;s a problem with your SDL2 or graphics drivers.&nbsp; Does logcat say anything at all?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=3934#respond' onclick='return addComment.moveForm( "div-comment-3934", "3934", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-22687" class="comment even depth-3 parent"> <article
+id="div-comment-22687" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/98da1f24879a5ef064ece4416ac1ef03?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/98da1f24879a5ef064ece4416ac1ef03?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Dan</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-22687"> <time
+datetime="2014-08-07T20:02:20+00:00"> August 7, 2014 at 8:02 pm </time> </a></div> </footer><div
+class="comment-content"><p>Hi</p><p>cheers for the tutorial. I managed to build with the ndk and compile an APK and deploy to the emulator&#8230;..but I get the same problem as wolfie; the app just exits. I tried your suggestion of SDL_Log but nothing gest sent to logcat. Any other debuggin tips?</p><p>Cheers</p><p>Dan</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=22687#respond' onclick='return addComment.moveForm( "div-comment-22687", "22687", "respond", "946" )' aria-label='Reply to Dan'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-22688" class="comment odd alt depth-4 parent"> <article
+id="div-comment-22688" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/98da1f24879a5ef064ece4416ac1ef03?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/98da1f24879a5ef064ece4416ac1ef03?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Dan</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-22688"> <time
+datetime="2014-08-07T20:08:41+00:00"> August 7, 2014 at 8:08 pm </time> </a></div> </footer><div
+class="comment-content"><p>Hmmm&#8230;. oddly enough it runs fine on my phone. Is there a specific setting for the AVD that needs to be set?</p><p>Cheers</p><p>Dan</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=22688#respond' onclick='return addComment.moveForm( "div-comment-22688", "22688", "respond", "946" )' aria-label='Reply to Dan'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-22706" class="comment byuser comment-author-jonny-d bypostauthor even depth-5"> <article
+id="div-comment-22706" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-22706"> <time
+datetime="2014-08-07T21:59:33+00:00"> August 7, 2014 at 9:59 pm </time> </a></div> </footer><div
+class="comment-content"><p>I can&#8217;t be certain&#8230;&nbsp; The emulator and devices have in the past differed in several significant ways.&nbsp; I&#8217;m not sure what the current state of the emulator is, but it was once very, very sad (e.g. no support for GL ES 2.0).&nbsp; My best recommendation for Android dev is to test on multiple devices, if you can, and don&#8217;t ever use the emulator.</p></div> </article></li></ol></li></ol></li></ol></li></ol></li><li
+id="comment-4076" class="comment odd alt thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-4076" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/4c31ca0b4dfc73094a4bacdf41a0ae27?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4c31ca0b4dfc73094a4bacdf41a0ae27?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Lance Zimmerman</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-4076"> <time
+datetime="2013-10-27T15:39:29+00:00"> October 27, 2013 at 3:39 pm </time> </a></div> </footer><div
+class="comment-content"><p>Have you tried C4Droid? It is totally awesome, and implements SDL2. It is so worth the $3. I can code anywhere! I&#8217;m learning SDL2 now because of it.<br
+/> Thank you!</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=4076#respond' onclick='return addComment.moveForm( "div-comment-4076", "4076", "respond", "946" )' aria-label='Reply to Lance Zimmerman'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-138379" class="comment even depth-2"> <article
+id="div-comment-138379" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/d040cd23360a6f6832a08674c75a55e2?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d040cd23360a6f6832a08674c75a55e2?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://kohlrak.sytes.net' rel='external nofollow' class='url'>Kohlrak</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-138379"> <time
+datetime="2016-11-01T11:25:47+00:00"> November 1, 2016 at 11:25 am </time> </a></div> </footer><div
+class="comment-content"><p>I&#8217;m trying to learn SDL2, but i&#8217;m having a heck of a time finding example code that i can drop in and run. It doesn&#8217;t say it can&#8217;t find SDL.h, but all the functions and classes of SDL are undeclared according to the compiler. Could you drop me a line and show me something you got working?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=138379#respond' onclick='return addComment.moveForm( "div-comment-138379", "138379", "respond", "946" )' aria-label='Reply to Kohlrak'>Reply</a></div> </article></li></ol></li><li
+id="comment-9528" class="comment odd alt thread-even depth-1"> <article
+id="div-comment-9528" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/9498bb4d768c2b71225a396762bbc551?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/9498bb4d768c2b71225a396762bbc551?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Gavin</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-9528"> <time
+datetime="2014-03-22T04:07:51+00:00"> March 22, 2014 at 4:07 am </time> </a></div> </footer><div
+class="comment-content"><p>APP_STL := gnustl_static change to APP_STL := stlport_static maybe fix your problem</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=9528#respond' onclick='return addComment.moveForm( "div-comment-9528", "9528", "respond", "946" )' aria-label='Reply to Gavin'>Reply</a></div> </article></li><li
+id="comment-9935" class="comment even thread-odd thread-alt depth-1"> <article
+id="div-comment-9935" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/13aa2853fe15f4b65b4ee3fb235c3132?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/13aa2853fe15f4b65b4ee3fb235c3132?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Jesse</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-9935"> <time
+datetime="2014-03-30T01:20:06+00:00"> March 30, 2014 at 1:20 am </time> </a></div> </footer><div
+class="comment-content"><p>If you change the target sdk version, you will need to add screenSize to the configChanges attribute. Like this:</p><p>Otherwise your app will just shut down when the orientation changes.<br
+/> See <a
+href="http://developer.android.com/guide/topics/manifest/activity-element.html" >http://developer.android.com/guide/topics/manifest/activity-element.html</a></p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=9935#respond' onclick='return addComment.moveForm( "div-comment-9935", "9935", "respond", "946" )' aria-label='Reply to Jesse'>Reply</a></div> </article></li><li
+id="comment-13176" class="comment odd alt thread-even depth-1 parent"> <article
+id="div-comment-13176" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/1702e23dcfa8d6cced2815e0baf2b0ff?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/1702e23dcfa8d6cced2815e0baf2b0ff?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">zellJunior</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-13176"> <time
+datetime="2014-05-18T17:23:41+00:00"> May 18, 2014 at 5:23 pm </time> </a></div> </footer><div
+class="comment-content"><p>I can&#8217;t manage to make my program to run on android. It just start,then stop. I have 4 headers, and 5 .cpp(1 = main.cpp), they are all in src(is that correct?). In main i am initializing everythin thru SDL_Init(||);<br
+/> I am creating a window, and a surface from that window. A loop. What could be the problem?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=13176#respond' onclick='return addComment.moveForm( "div-comment-13176", "13176", "respond", "946" )' aria-label='Reply to zellJunior'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-22708" class="comment byuser comment-author-jonny-d bypostauthor even depth-2"> <article
+id="div-comment-22708" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-22708"> <time
+datetime="2014-08-07T22:01:56+00:00"> August 7, 2014 at 10:01 pm </time> </a></div> </footer><div
+class="comment-content"><p>There are several ways things could get messed up.&nbsp; All I can suggest is to follow through the directions again and try a minimal program before getting into anything else.&nbsp; Native (JNI) source files would be in the jni directory.&nbsp; The src directory (not in jni/) is for Java code.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=22708#respond' onclick='return addComment.moveForm( "div-comment-22708", "22708", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-27373" class="comment odd alt thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-27373" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/4c3f7d848279f4a1e93f033d8954350c?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4c3f7d848279f4a1e93f033d8954350c?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">rosen</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-27373"> <time
+datetime="2014-09-03T05:39:49+00:00"> September 3, 2014 at 5:39 am </time> </a></div> </footer><div
+class="comment-content"><p>FATAL EXCEPTION: main<br
+/> Process: org.libsdl.app, PID: 7192<br
+/> java.lang.UnsatisfiedLinkError: dlopen failed: cannot locate symbol &#8220;signal&#8221; referenced by &#8220;libSDL2.so&#8221;&#8230;<br
+/> at java.lang.Runtime.loadLibrary(Runtime.java:364)<br
+/> at java.lang.System.loadLibrary(System.java:526)<br
+/> at org.libsdl.app.SDLActivity.(SDLActivity.java:49)<br
+/> at java.lang.Class.newInstanceImpl(Native Method)<br
+/> at java.lang.Class.newInstance(Class.java:1208)<br
+/> at android.app.Instrumentation.newActivity(Instrumentation.java:1061)<br
+/> at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2101)<br
+/> at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2233)<br
+/> at android.app.ActivityThread.access$800(ActivityThread.java:135)<br
+/> at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1196)<br
+/> at android.os.Handler.dispatchMessage(Handler.java:102)<br
+/> at android.os.Looper.loop(Looper.java:136)<br
+/> at android.app.ActivityThread.main(ActivityThread.java:5001)<br
+/> at java.lang.reflect.Method.invokeNative(Native Method)<br
+/> at java.lang.reflect.Method.invoke(Method.java:515)<br
+/> at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:785)<br
+/> at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:601)<br
+/> at dalvik.system.NativeStart.main(Native Method)</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=27373#respond' onclick='return addComment.moveForm( "div-comment-27373", "27373", "respond", "946" )' aria-label='Reply to rosen'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-28511" class="comment even depth-2"> <article
+id="div-comment-28511" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/d2363f649e3e24aab8ac40cf9bd9134c?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d2363f649e3e24aab8ac40cf9bd9134c?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Daniel</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-28511"> <time
+datetime="2014-09-14T10:41:14+00:00"> September 14, 2014 at 10:41 am </time> </a></div> </footer><div
+class="comment-content"><p>I also get the same error message whenever I try to execute the program in Eclipse. Anyone who&#8217;s got an answer on what&#8217;s causes this error?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=28511#respond' onclick='return addComment.moveForm( "div-comment-28511", "28511", "respond", "946" )' aria-label='Reply to Daniel'>Reply</a></div> </article></li><li
+id="comment-32273" class="comment odd alt depth-2"> <article
+id="div-comment-32273" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/d03debcf5dc9b854b0be9856c1a3e085?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/d03debcf5dc9b854b0be9856c1a3e085?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Nate</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-32273"> <time
+datetime="2014-10-10T16:51:25+00:00"> October 10, 2014 at 4:51 pm </time> </a></div> </footer><div
+class="comment-content"><p>This error happens when you are using ndk toolkit from the wrong platform architecture.&nbsp; If your phone is a 32 bit phone, make sure you have the 32bit platform version of ndk.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=32273#respond' onclick='return addComment.moveForm( "div-comment-32273", "32273", "respond", "946" )' aria-label='Reply to Nate'>Reply</a></div> </article></li><li
+id="comment-32296" class="comment even depth-2"> <article
+id="div-comment-32296" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/2767b9f7af80a5969b48972bba7384d2?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/2767b9f7af80a5969b48972bba7384d2?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Juliano</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-32296"> <time
+datetime="2014-10-10T18:58:49+00:00"> October 10, 2014 at 6:58 pm </time> </a></div> </footer><div
+class="comment-content"><p>Had this problem, I changed my NDK version from 10 back to 9, and problem solved&#8230;</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=32296#respond' onclick='return addComment.moveForm( "div-comment-32296", "32296", "respond", "946" )' aria-label='Reply to Juliano'>Reply</a></div> </article></li></ol></li><li
+id="comment-28607" class="comment odd alt thread-even depth-1"> <article
+id="div-comment-28607" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/f4d601f114b1e991f556f6181383d870?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/f4d601f114b1e991f556f6181383d870?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Anta</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-28607"> <time
+datetime="2014-09-15T16:46:40+00:00"> September 15, 2014 at 4:46 pm </time> </a></div> </footer><div
+class="comment-content"><p>09-15 20:35:15.481: D/dalvikvm(1898): Trying to load lib /data/app-lib/org.libsdl.app-1/libSDL2.so 0xb406ede8<br
+/> 09-15 20:35:15.481: E/dalvikvm(1898): dlopen(&#8220;/data/app-lib/org.libsdl.app-1/libSDL2.so&#8221;) failed: Cannot load library: soinfo_relocate(linker.cpp:975): cannot locate symbol &#8220;signal&#8221; referenced by &#8220;libSDL2.so&#8221;&#8230;<br
+/> 09-15 20:35:15.491: W/dalvikvm(1898): Exception Ljava/lang/UnsatisfiedLinkError; thrown while initializing Lorg/libsdl/app/SDLActivity;<br
+/> 09-15 20:35:15.491: W/dalvikvm(1898): Class init failed in newInstance call (Lorg/libsdl/app/SDLActivity;)<br
+/> 09-15 20:35:15.491: D/AndroidRuntime(1898): Shutting down VM<br
+/> 09-15 20:35:15.491: W/dalvikvm(1898): threadid=1: thread exiting with uncaught exception (group=0xb3e0f908)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): FATAL EXCEPTION: main<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): java.lang.ExceptionInInitializerError<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.Class.newInstanceImpl(Native Method)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.Class.newInstance(Class.java:1319)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.Instrumentation.newActivity(Instrumentation.java:1054)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2097)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2230)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.ActivityThread.access$600(ActivityThread.java:141)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1234)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.os.Handler.dispatchMessage(Handler.java:99)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.os.Looper.loop(Looper.java:137)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at android.app.ActivityThread.main(ActivityThread.java:5039)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.reflect.Method.invokeNative(Native Method)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.reflect.Method.invoke(Method.java:511)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:793)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:560)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at dalvik.system.NativeStart.main(Native Method)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): Caused by: java.lang.UnsatisfiedLinkError: Cannot load library: soinfo_relocate(linker.cpp:975): cannot locate symbol &#8220;signal&#8221; referenced by &#8220;libSDL2.so&#8221;&#8230;<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.Runtime.loadLibrary(Runtime.java:371)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at java.lang.System.loadLibrary(System.java:535)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	at org.libsdl.app.SDLActivity.(SDLActivity.java:49)<br
+/> 09-15 20:35:15.491: E/AndroidRuntime(1898): 	&#8230; 15 more</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=28607#respond' onclick='return addComment.moveForm( "div-comment-28607", "28607", "respond", "946" )' aria-label='Reply to Anta'>Reply</a></div> </article></li><li
+id="comment-33506" class="comment even thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-33506" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/838c6ccae17aa6682d4f11334ba207f8?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/838c6ccae17aa6682d4f11334ba207f8?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">John</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-33506"> <time
+datetime="2014-10-15T08:35:46+00:00"> October 15, 2014 at 8:35 am </time> </a></div> </footer><div
+class="comment-content"><p>When you say, &#8220;“Copy projects into workspace”, but that messed things up for me, so you probably shouldn’t do it.&#8221; how messed up was it? I found that copying from outside the workspace was the only way to get it in. When I try to import project already in workspace, with Android &gt; Android Project from Existing Code, it fails with &#8220;Invalid project description.&#8221; details-&gt;&#8221;mypath/MyProj overlaps the location of another project: &#8216;MyProj'&#8221;, despite it wanting to name it after the only Activity I implement, that which extends SDL_Activity.</p><p>I had to copy/move it outside of the workspace and then import it as a copy. I should&#8217;ve looked at other ways to import existing code, but I like the Android way best because last time I couldn&#8217;t ctrl-tab between header and body. So this way works this far and I right click my project -&gt; Add Android NDK Support. Now I can ctrl-tab but when I open a cpp file all references to SDL functions become red-underlined errors, despite NDK build having no worries with them.</p><p>So it works but eclipse is not a good devlopment environment as things stand.</p><p>Does this all sound like the consequences of copying the project in and/or using 64 bit software?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=33506#respond' onclick='return addComment.moveForm( "div-comment-33506", "33506", "respond", "946" )' aria-label='Reply to John'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-87432" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-87432" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-87432"> <time
+datetime="2015-01-09T12:35:37+00:00"> January 9, 2015 at 12:35 pm </time> </a></div> </footer><div
+class="comment-content"><p>It&#8217;s been a while since then, so I don&#8217;t remember the details.&nbsp; It might not have copied some files (e.g. SDL source) as I expected?&nbsp; You might have to rename your project files by hand before importing it if it gives you a name collision error.</p><p>Regardless, Eclipse is kinda messy.&nbsp; If you do get it working in some way, then congrats!&nbsp; Once that part is over, you should be fine.&nbsp; In my experience, it is normal for some things (like error highlighting in native code) not to work quite right.&nbsp; You can always use command-line tools instead, and some IDEs can be configured to interface somewhat with those.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=87432#respond' onclick='return addComment.moveForm( "div-comment-87432", "87432", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-88517" class="comment even thread-even depth-1"> <article
+id="div-comment-88517" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/29dd441cd610ddc44390e1eceabf9eaa?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/29dd441cd610ddc44390e1eceabf9eaa?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">kebabmestari</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-88517"> <time
+datetime="2015-01-17T18:21:21+00:00"> January 17, 2015 at 6:21 pm </time> </a></div> </footer><div
+class="comment-content"><p>When building sdl with ndk-build i get undefined reference to SDL_main in SDL_android_main.c :32. Is this a bug in SDL?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=88517#respond' onclick='return addComment.moveForm( "div-comment-88517", "88517", "respond", "946" )' aria-label='Reply to kebabmestari'>Reply</a></div> </article></li><li
+id="comment-96324" class="comment odd alt thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-96324" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/db35b6559f22768b6cfaed5bff2acde0?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/db35b6559f22768b6cfaed5bff2acde0?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://www.wittnet.org' rel='external nofollow' class='url'>Andreas Wittmann</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-96324"> <time
+datetime="2015-03-14T03:44:30+00:00"> March 14, 2015 at 3:44 am </time> </a></div> </footer><div
+class="comment-content"><p>@kebabmestari: I&#8217;ve got the same error because i&#8217;ve used main as the entry-point in main.c (as usual in C)<br
+/> But instead of main try SDL_main. It work&#8217;s for me.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=96324#respond' onclick='return addComment.moveForm( "div-comment-96324", "96324", "respond", "946" )' aria-label='Reply to Andreas Wittmann'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-96391" class="comment byuser comment-author-jonny-d bypostauthor even depth-2"> <article
+id="div-comment-96391" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-96391"> <time
+datetime="2015-03-14T10:27:36+00:00"> March 14, 2015 at 10:27 am </time> </a></div> </footer><div
+class="comment-content"><p>Be careful of this.&nbsp; SDL&#8217;s whole point is to abstract the differences between platforms.&nbsp; SDL_main is not meant to be defined by you so that your code works everywhere (SDL redefines your main() for a good reason, especially on Windows).&nbsp; Some platforms (like Android) don&#8217;t technically need this, but it&#8217;s a good idea to stick to main() for consistency.&nbsp; If you find yourself using SDL_main, then there&#8217;s a problem that should be solved.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=96391#respond' onclick='return addComment.moveForm( "div-comment-96391", "96391", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-102858" class="comment odd alt thread-even depth-1"> <article
+id="div-comment-102858" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/8e94b7a60af09346840915ff0cd28846?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/8e94b7a60af09346840915ff0cd28846?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Karolk91</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-102858"> <time
+datetime="2015-04-19T16:48:46+00:00"> April 19, 2015 at 4:48 pm </time> </a></div> </footer><div
+class="comment-content"><p>If you get the undefined reference to SDL_main linker error you probably didn&#8217;t include SDL.h header</p><p>so</p><p>#include &#8220;SDL.h&#8221; in a file where main is declared (e.g. main.cpp)</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=102858#respond' onclick='return addComment.moveForm( "div-comment-102858", "102858", "respond", "946" )' aria-label='Reply to Karolk91'>Reply</a></div> </article></li><li
+id="comment-106337" class="comment even thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-106337" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/5b668df3c4afd563df54538274193a81?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5b668df3c4afd563df54538274193a81?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Ebin xavier</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-106337"> <time
+datetime="2015-05-07T04:14:19+00:00"> May 7, 2015 at 4:14 am </time> </a></div> </footer><div
+class="comment-content"><p>Hey anybody help me.<br
+/> I am new to Android programs and SDL2  I tried your example code main.c in c4droid. But nothing shows up. I put an image.bmp file also in the resources folder.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=106337#respond' onclick='return addComment.moveForm( "div-comment-106337", "106337", "respond", "946" )' aria-label='Reply to Ebin xavier'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-108243" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-108243" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-108243"> <time
+datetime="2015-05-16T23:25:40+00:00"> May 16, 2015 at 11:25 pm </time> </a></div> </footer><div
+class="comment-content"><p>You&#8217;ll have to give more info for anyone to figure it out.&nbsp; SDL version, error messages, changes you&#8217;ve tried, does other rendering work, etc.&nbsp; Send me an email if you still can&#8217;t get it.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=108243#respond' onclick='return addComment.moveForm( "div-comment-108243", "108243", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-114645" class="comment even thread-even depth-1 parent"> <article
+id="div-comment-114645" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/177f75fab34fb9cb4bea532d0afbedee?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/177f75fab34fb9cb4bea532d0afbedee?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://stuartaxon.com' rel='external nofollow' class='url'>Stu</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-114645"> <time
+datetime="2015-06-25T12:39:32+00:00"> June 25, 2015 at 12:39 pm </time> </a></div> </footer><div
+class="comment-content"><p>Hi,<br
+/> This is really good &#8211; any chance of a tutorial on getting it to work with android-cmake ?</p><p>S</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=114645#respond' onclick='return addComment.moveForm( "div-comment-114645", "114645", "respond", "946" )' aria-label='Reply to Stu'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-117713" class="comment byuser comment-author-jonny-d bypostauthor odd alt depth-2"> <article
+id="div-comment-117713" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=74&#038;d=mm&#038;r=g' srcset='http://0.gravatar.com/avatar/0f77698b15c8b222d1f27fb7edf43b92?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-117713"> <time
+datetime="2015-07-25T10:54:43+00:00"> July 25, 2015 at 10:54 am </time> </a></div> </footer><div
+class="comment-content"><p>Sorry, probably not&#8230;&nbsp; I don&#8217;t use android-cmake myself.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=117713#respond' onclick='return addComment.moveForm( "div-comment-117713", "117713", "respond", "946" )' aria-label='Reply to Jonny D'>Reply</a></div> </article></li></ol></li><li
+id="comment-115000" class="comment even thread-odd thread-alt depth-1 parent"> <article
+id="div-comment-115000" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/177f75fab34fb9cb4bea532d0afbedee?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/177f75fab34fb9cb4bea532d0afbedee?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn"><a
+href='http://stuartaxon.com' rel='external nofollow' class='url'>Stu</a></b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-115000"> <time
+datetime="2015-06-28T00:25:25+00:00"> June 28, 2015 at 12:25 am </time> </a></div> </footer><div
+class="comment-content"><p>Android Studio was only compiling when I ran it from a shell, it turned out it wasn&#8217;t getting the ANDROID_NDK environment variable, I&#8217;d put ndk.dir in local.properties, but this wasn&#8217;t being picked up &#8211;</p><p>Added this to the top of build.gradle and it got the settings from local.properties</p><p>// TODO Stop using this manual property stuff when ubuntu gradle up to date<br
+/> Properties properties = new Properties()<br
+/> properties.load(project.rootProject.file(&#8216;local.properties&#8217;).newDataInputStream())<br
+/> def sdkDir = properties.getProperty(&#8216;sdk.dir&#8217;)<br
+/> def ndkDir = properties.getProperty(&#8216;ndk.dir&#8217;)</p><p>// TODO &#8211; Use these versions instead when ubuntu gradle up to date<br
+/> //def ndkDir = project.plugins.findPlugin(&#8216;com.android.application&#8217;).getNdkFolder()<br
+/> //def sdkDir = project.plugins.findPlugin(&#8216;com.android.application&#8217;).getSdkFolder()</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=115000#respond' onclick='return addComment.moveForm( "div-comment-115000", "115000", "respond", "946" )' aria-label='Reply to Stu'>Reply</a></div> </article><ol
+class="children"><li
+id="comment-131020" class="comment odd alt depth-2"> <article
+id="div-comment-131020" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/4723616801892b0cf0f51e7da6f1199a?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/4723616801892b0cf0f51e7da6f1199a?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">SparkyNZ</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-131020"> <time
+datetime="2015-10-25T01:07:30+00:00"> October 25, 2015 at 1:07 am </time> </a></div> </footer><div
+class="comment-content"><p>Hi Stu. If  you have SDL working with Android Studio, would you please upload a simple &#8216;hello world&#8217; project?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=131020#respond' onclick='return addComment.moveForm( "div-comment-131020", "131020", "respond", "946" )' aria-label='Reply to SparkyNZ'>Reply</a></div> </article></li></ol></li><li
+id="comment-118641" class="comment even thread-even depth-1"> <article
+id="div-comment-118641" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/5b668df3c4afd563df54538274193a81?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/5b668df3c4afd563df54538274193a81?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Ebin Xavier</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-118641"> <time
+datetime="2015-08-04T12:42:27+00:00"> August 4, 2015 at 12:42 pm </time> </a></div> </footer><div
+class="comment-content"><p>Anybody help me.<br
+/> Is it possible to access WiFi of our android device via SDL (SDL_net or anything) ,so that I can use it to make a group chat application.</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=118641#respond' onclick='return addComment.moveForm( "div-comment-118641", "118641", "respond", "946" )' aria-label='Reply to Ebin Xavier'>Reply</a></div> </article></li><li
+id="comment-137451" class="comment odd alt thread-odd thread-alt depth-1"> <article
+id="div-comment-137451" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://1.gravatar.com/avatar/ad66ad239081551064450ef63395145e?s=74&#038;d=mm&#038;r=g' srcset='http://1.gravatar.com/avatar/ad66ad239081551064450ef63395145e?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Krzyś</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-137451"> <time
+datetime="2016-07-22T12:14:38+00:00"> July 22, 2016 at 12:14 pm </time> </a></div> </footer><div
+class="comment-content"><p>I would like to trying Your code to install.<br
+/> <a
+href="https://github.com/xor256/SDL2-Android-jak-to-sie-robi" >https://github.com/xor256/SDL2-Android-jak-to-sie-robi</a></p><p>0-build.sh is copying and working (build sucessful)<br
+/> but not running . Only black screen and nothing happenes.</p><p>Can You writing You own script to build Android version of SDL2 with png image?</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=137451#respond' onclick='return addComment.moveForm( "div-comment-137451", "137451", "respond", "946" )' aria-label='Reply to Krzyś'>Reply</a></div> </article></li><li
+id="comment-137544" class="comment even thread-even depth-1"> <article
+id="div-comment-137544" class="comment-body"> <footer
+class="comment-meta"><div
+class="comment-author vcard"> <img
+alt='' src='http://2.gravatar.com/avatar/8d83f82578820d1599ceccc2f42a8697?s=74&#038;d=mm&#038;r=g' srcset='http://2.gravatar.com/avatar/8d83f82578820d1599ceccc2f42a8697?s=148&amp;d=mm&amp;r=g 2x' class='avatar avatar-74 photo' height='74' width='74' /> <b
+class="fn">Mkkui</b> <span
+class="says">says:</span></div><div
+class="comment-metadata"> <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-137544"> <time
+datetime="2016-08-05T09:20:17+00:00"> August 5, 2016 at 9:20 am </time> </a></div> </footer><div
+class="comment-content"><p>How check in adnroid width and hight screen?<br
+/> i check GetCurrend Display and other function no working</p></div><div
+class="reply"><a
+rel='nofollow' class='comment-reply-link' href='http://www.dinomage.com/2013/01/howto-sdl-on-android/?replytocom=137544#respond' onclick='return addComment.moveForm( "div-comment-137544", "137544", "respond", "946" )' aria-label='Reply to Mkkui'>Reply</a></div> </article></li></ol><div
+id="respond" class="comment-respond"><h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a
+rel="nofollow" id="cancel-comment-reply-link" href="/2013/01/howto-sdl-on-android/#respond" style="display:none;">Cancel reply</a></small></h3><form
+action="http://www.dinomage.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><p
+class="comment-notes"><span
+id="email-notes">Your email address will not be published.</span> Required fields are marked <span
+class="required">*</span></p><p
+class="comment-form-comment"><label
+for="comment">Comment</label><textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" aria-required="true" required="required"></textarea></p><p
+class="comment-form-author"><label
+for="author">Name <span
+class="required">*</span></label> <input
+id="author" name="author" type="text" value="" size="30" maxlength="245" aria-required='true' required='required' /></p><p
+class="comment-form-email"><label
+for="email">Email <span
+class="required">*</span></label> <input
+id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" aria-required='true' required='required' /></p><p
+class="comment-form-url"><label
+for="url">Website</label> <input
+id="url" name="url" type="url" value="" size="30" maxlength="200" /></p><p><label
+for='subscribe-reloaded'><select
+name='subscribe-reloaded' id='subscribe-reloaded'><option
+value='none' >Don't subscribe</option><option
+value='yes' >All</option><option
+value='replies' selected='selected'>Replies to my comments</option> </select> Notify me of followup comments via e-mail. You can also <a
+href='http://www.dinomage.com/?page_id=99999&amp;srp=946&amp;srk=be1202e0e17d8303347e5bc995412fb1&amp;sra=s'>subscribe</a> without commenting.</label></p><p
+class="form-submit"><input
+name="submit" type="submit" id="submit" class="submit" value="Post Comment" /> <input
+type='hidden' name='comment_post_ID' value='946' id='comment_post_ID' /> <input
+type='hidden' name='comment_parent' id='comment_parent' value='0' /></p><p
+style="display: none;"><input
+type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="2570fcb507" /></p><p
+style="display: none;"><input
+type="hidden" id="ak_js" name="ak_js" value="183"/></p></form></div></div></div></div><div
+id="tertiary" class="sidebar-container" role="complementary"><div
+class="sidebar-inner"><div
+class="widget-area"> <aside
+id="recent-posts-3" class="widget widget_recent_entries"><h3 class="widget-title">Recent Posts</h3><ul><li> <a
+href="http://www.dinomage.com/2016/09/pixel-proof-innovative-pixel-editor/">Pixel Proof &#8211; Innovative pixel editor</a> <span
+class="post-date">September 1, 2016</span></li><li> <a
+href="http://www.dinomage.com/2015/04/c-string-explode/">C string explode</a> <span
+class="post-date">April 2, 2015</span></li><li> <a
+href="http://www.dinomage.com/2015/03/tangible-math-now-available/">Tangible Math now available!</a> <span
+class="post-date">March 23, 2015</span></li><li> <a
+href="http://www.dinomage.com/2015/01/sdl_gpu-simple-tutorial/">SDL_gpu Simple Tutorial</a> <span
+class="post-date">January 9, 2015</span></li><li> <a
+href="http://www.dinomage.com/2014/03/sdl_gpu-0-8-0-released/">SDL_gpu 0.8.0 released!</a> <span
+class="post-date">March 7, 2014</span></li></ul> </aside> <aside
+id="recent-comments-3" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul
+id="recentcomments"><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://kohlrak.sytes.net' rel='external nofollow' class='url'>Kohlrak</a></span> on <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-138379">HowTo: SDL on Android part 1 &#8211; Setup</a></li><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></span> on <a
+href="http://www.dinomage.com/tangible-math/#comment-137993">Tangible Math &#8211; Math Manipulatives App</a></li><li
+class="recentcomments"><span
+class="comment-author-link">Ashley</span> on <a
+href="http://www.dinomage.com/tangible-math/#comment-137992">Tangible Math &#8211; Math Manipulatives App</a></li><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></span> on <a
+href="http://www.dinomage.com/tangible-math/#comment-137907">Tangible Math &#8211; Math Manipulatives App</a></li><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></span> on <a
+href="http://www.dinomage.com/about/#comment-137906">About Us</a></li></ul></aside><aside
+id="categories-3" class="widget widget_categories"><h3 class="widget-title">Categories</h3><ul><li
+class="cat-item cat-item-36"><a
+href="http://www.dinomage.com/category/android-2/" >Android</a> (4)</li><li
+class="cat-item cat-item-6"><a
+href="http://www.dinomage.com/category/articles/" >Articles</a> (5)</li><li
+class="cat-item cat-item-18"><a
+href="http://www.dinomage.com/category/dev/" >Dev</a> (104)</li><li
+class="cat-item cat-item-15"><a
+href="http://www.dinomage.com/category/game-design/" >Game Design</a> (6)</li><li
+class="cat-item cat-item-4"><a
+href="http://www.dinomage.com/category/games/" >Games</a> (43)<ul
+class='children'><li
+class="cat-item cat-item-14"><a
+href="http://www.dinomage.com/category/games/dont-blow-it/" >Don&#039;t Blow It!</a> (10)</li><li
+class="cat-item cat-item-7"><a
+href="http://www.dinomage.com/category/games/gigasun-galaxy/" >GigaSun Galaxy</a> (1)</li><li
+class="cat-item cat-item-8"><a
+href="http://www.dinomage.com/category/games/gigasun-jet/" >GigaSun Jet</a> (16)</li><li
+class="cat-item cat-item-39"><a
+href="http://www.dinomage.com/category/games/gladiator/" >Gladiator</a> (4)</li><li
+class="cat-item cat-item-49"><a
+href="http://www.dinomage.com/category/games/tangible-math/" >Tangible Math</a> (1)</li></ul></li><li
+class="cat-item cat-item-1"><a
+href="http://www.dinomage.com/category/general/" >General</a> (11)</li><li
+class="cat-item cat-item-9"><a
+href="http://www.dinomage.com/category/libraries/" >Libraries</a> (40)</li><li
+class="cat-item cat-item-20"><a
+href="http://www.dinomage.com/category/news/" >News</a> (8)</li><li
+class="cat-item cat-item-10"><a
+href="http://www.dinomage.com/category/physics/" >Physics</a> (1)</li><li
+class="cat-item cat-item-11"><a
+href="http://www.dinomage.com/category/tutorials/" >Tutorials</a> (4)</li></ul> </aside></div></div></div></div> <footer
+id="colophon" class="site-footer" role="contentinfo"><div
+id="secondary" class="sidebar-container" role="complementary"><div
+class="widget-area"> <aside
+id="recent-posts-2" class="widget widget_recent_entries"><h3 class="widget-title">Recent Posts</h3><ul><li> <a
+href="http://www.dinomage.com/2016/09/pixel-proof-innovative-pixel-editor/">Pixel Proof &#8211; Innovative pixel editor</a></li><li> <a
+href="http://www.dinomage.com/2015/04/c-string-explode/">C string explode</a></li><li> <a
+href="http://www.dinomage.com/2015/03/tangible-math-now-available/">Tangible Math now available!</a></li><li> <a
+href="http://www.dinomage.com/2015/01/sdl_gpu-simple-tutorial/">SDL_gpu Simple Tutorial</a></li><li> <a
+href="http://www.dinomage.com/2014/03/sdl_gpu-0-8-0-released/">SDL_gpu 0.8.0 released!</a></li></ul> </aside> <aside
+id="recent-comments-2" class="widget widget_recent_comments"><h3 class="widget-title">Recent Comments</h3><ul
+id="recentcomments"><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://kohlrak.sytes.net' rel='external nofollow' class='url'>Kohlrak</a></span> on <a
+href="http://www.dinomage.com/2013/01/howto-sdl-on-android/#comment-138379">HowTo: SDL on Android part 1 &#8211; Setup</a></li><li
+class="recentcomments"><span
+class="comment-author-link"><a
+href='http://dinomage.com' rel='external nofollow' class='url'>Jonny D</a></span> on <a
+href="http://www.dinomage.com/tangible-math/#comment-137993">Tangible Math &#8211; Math Manipulatives App</a></li><li
+class="recentcomments"><span
+class="comment-author-link">Ashley</span> on <a
+href="http://www.dinomage.com/tangible-math/#comment-137992">Tangible Math &#8211; Math Manipulatives App</a></li></ul></aside><aside
+id="categories-2" class="widget widget_categories"><h3 class="widget-title">Categories</h3><ul><li
+class="cat-item cat-item-36"><a
+href="http://www.dinomage.com/category/android-2/" >Android</a> (4)</li><li
+class="cat-item cat-item-6"><a
+href="http://www.dinomage.com/category/articles/" >Articles</a> (5)</li><li
+class="cat-item cat-item-18"><a
+href="http://www.dinomage.com/category/dev/" >Dev</a> (104)</li><li
+class="cat-item cat-item-15"><a
+href="http://www.dinomage.com/category/game-design/" >Game Design</a> (6)</li><li
+class="cat-item cat-item-4"><a
+href="http://www.dinomage.com/category/games/" >Games</a> (43)<ul
+class='children'><li
+class="cat-item cat-item-14"><a
+href="http://www.dinomage.com/category/games/dont-blow-it/" >Don&#039;t Blow It!</a> (10)</li><li
+class="cat-item cat-item-7"><a
+href="http://www.dinomage.com/category/games/gigasun-galaxy/" >GigaSun Galaxy</a> (1)</li><li
+class="cat-item cat-item-8"><a
+href="http://www.dinomage.com/category/games/gigasun-jet/" >GigaSun Jet</a> (16)</li><li
+class="cat-item cat-item-39"><a
+href="http://www.dinomage.com/category/games/gladiator/" >Gladiator</a> (4)</li><li
+class="cat-item cat-item-49"><a
+href="http://www.dinomage.com/category/games/tangible-math/" >Tangible Math</a> (1)</li></ul></li><li
+class="cat-item cat-item-1"><a
+href="http://www.dinomage.com/category/general/" >General</a> (11)</li><li
+class="cat-item cat-item-9"><a
+href="http://www.dinomage.com/category/libraries/" >Libraries</a> (40)</li><li
+class="cat-item cat-item-20"><a
+href="http://www.dinomage.com/category/news/" >News</a> (8)</li><li
+class="cat-item cat-item-10"><a
+href="http://www.dinomage.com/category/physics/" >Physics</a> (1)</li><li
+class="cat-item cat-item-11"><a
+href="http://www.dinomage.com/category/tutorials/" >Tutorials</a> (4)</li></ul> </aside><aside
+id="archives-2" class="widget widget_archive"><h3 class="widget-title">Archives</h3> <label
+class="screen-reader-text" for="archives-dropdown-2">Archives</label> <select
+id="archives-dropdown-2" name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'><option
+value="">Select Month</option><option
+value='http://www.dinomage.com/2016/09/'> September 2016 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2015/04/'> April 2015 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2015/03/'> March 2015 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2015/01/'> January 2015 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2014/03/'> March 2014 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2014/01/'> January 2014 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2013/12/'> December 2013 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2013/10/'> October 2013 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2013/08/'> August 2013 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2013/05/'> May 2013 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2013/04/'> April 2013 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2013/01/'> January 2013 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/12/'> December 2012 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2012/11/'> November 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/10/'> October 2012 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2012/09/'> September 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/08/'> August 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/07/'> July 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/06/'> June 2012 &nbsp;(4)</option><option
+value='http://www.dinomage.com/2012/05/'> May 2012 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2012/04/'> April 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/03/'> March 2012 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2012/01/'> January 2012 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2011/12/'> December 2011 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2011/11/'> November 2011 &nbsp;(3)</option><option
+value='http://www.dinomage.com/2011/10/'> October 2011 &nbsp;(8)</option><option
+value='http://www.dinomage.com/2011/09/'> September 2011 &nbsp;(5)</option><option
+value='http://www.dinomage.com/2011/06/'> June 2011 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2011/05/'> May 2011 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2010/11/'> November 2010 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2010/08/'> August 2010 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2010/04/'> April 2010 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2010/02/'> February 2010 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2010/01/'> January 2010 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2009/11/'> November 2009 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2009/10/'> October 2009 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2009/09/'> September 2009 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2009/08/'> August 2009 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2009/05/'> May 2009 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2009/04/'> April 2009 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2009/03/'> March 2009 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2009/02/'> February 2009 &nbsp;(4)</option><option
+value='http://www.dinomage.com/2008/11/'> November 2008 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2008/10/'> October 2008 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2008/09/'> September 2008 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2008/08/'> August 2008 &nbsp;(4)</option><option
+value='http://www.dinomage.com/2008/07/'> July 2008 &nbsp;(5)</option><option
+value='http://www.dinomage.com/2008/06/'> June 2008 &nbsp;(4)</option><option
+value='http://www.dinomage.com/2008/05/'> May 2008 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2008/04/'> April 2008 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2008/03/'> March 2008 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2008/01/'> January 2008 &nbsp;(3)</option><option
+value='http://www.dinomage.com/2007/12/'> December 2007 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2007/11/'> November 2007 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2007/10/'> October 2007 &nbsp;(1)</option><option
+value='http://www.dinomage.com/2007/09/'> September 2007 &nbsp;(2)</option><option
+value='http://www.dinomage.com/2007/06/'> June 2007 &nbsp;(5)</option><option
+value='http://www.dinomage.com/2007/01/'> January 2007 &nbsp;(1)</option> </select> </aside></div></div><div
+class="site-info"> <a
+href="https://wordpress.org/">Proudly powered by WordPress</a></div> </footer></div><script type="text/javascript" src="http://www.dinomage.com/wp-content/cache/minify/000000/M9RPzM4szk0t0Y_PzEvWT8svytUx1C-uzCtJrMjITM_IAeKS1CJMEWP94uSizIKSYv3iDOf8olTSdTkVlRZnBOQkZuYBAA.js"></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "http://www.dinomage.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.9b";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "http://www.dinomage.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?ver=3.0.9b";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['auto-links'] = false;
+	SyntaxHighlighter.defaults['gutter'] = false;
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var JQLBSettings = {"fitToScreen":"1","resizeSpeed":"300","displayDownloadLink":"0","navbarOnTop":"0","loopImages":"","resizeCenter":"","marginSize":"0","linkTarget":"_self","help":"","prevLinkTitle":"previous image","nextLinkTitle":"next image","prevLinkText":"\u00ab Previous","nextLinkText":"Next \u00bb","closeTitle":"close image gallery","image":"Image ","of":" of ","download":"Download","jqlb_overlay_opacity":"80","jqlb_overlay_color":"#000000","jqlb_overlay_close":"1","jqlb_border_width":"10","jqlb_border_color":"#ffffff","jqlb_border_radius":"0","jqlb_image_info_background_transparency":"100","jqlb_image_info_bg_color":"#ffffff","jqlb_image_info_text_color":"#000000","jqlb_image_info_text_fontsize":"10","jqlb_show_text_for_image":"1","jqlb_next_image_title":"next image","jqlb_previous_image_title":"previous image","jqlb_next_button_image":"http:\/\/www.dinomage.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/next.gif","jqlb_previous_button_image":"http:\/\/www.dinomage.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/prev.gif","jqlb_maximum_width":"","jqlb_maximum_height":"","jqlb_show_close_button":"1","jqlb_close_image_title":"close image gallery","jqlb_close_image_max_heght":"22","jqlb_image_for_close_lightbox":"http:\/\/www.dinomage.com\/wp-content\/plugins\/wp-lightbox-2\/styles\/images\/closelabel.gif","jqlb_keyboard_navigation":"1","jqlb_popup_size_fix":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://www.dinomage.com/wp-content/cache/minify/000000/VY1BDoMwDAQ_RHAp_VACLhjFdpoYAb9vKjjQ44xWsx1syUWaZgu6u-c_tUzSvGBQZhRzGVM8LkfsJyxR_YjjpdgXlXwOelg-K_7gJh9gW-0cNlM2RIGlwHuVwUil1ED9Rg5n7ws.js"></script>
+</body>
+</html>
+
+</body>
+</html>
+
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Minified using disk
+Page Caching using disk: enhanced
+Database Caching 1/73 queries in 0.073 seconds using disk
+
+ Served from: www.dinomage.com @ 2016-12-23 11:05:03 by W3 Total Cache -->

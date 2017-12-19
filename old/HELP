@@ -1,0 +1,9 @@
+android update project -p project --target android-19
+source ~/local/adt-bundle-linux-x86_64-20140321/sdk/env_build 
+source ~/local/android-ndk-r9d/env_build 
+export ANDROID_HOME=/home/yoyz/local/adt-bundle-linux-x86_64-20140321/
+./build.sh  release
+./build.sh  -h
+./changeAppSettings.sh -a
+android update project -p project --target android-19
+./build.sh
