@@ -1,0 +1,23 @@
+As root
+=======
+# adb kill-server
+# adb devices -l
+
+As user
+=======
+
+$ ./gradlew assembleDebug
+$ ls ./app/build/outputs/apk/app-debug.apk
+$ adb install -r ./app/build/outputs/apk/app-debug.apk
+$ ./gradlew clean
+
+SDL Android doc
+===============
+
+https://hg.libsdl.org/SDL/file/default/docs/README-android.md
+
+Tweak to manifest
+=================
+in file app/src/main/AndroidManifest.xml
+ <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
