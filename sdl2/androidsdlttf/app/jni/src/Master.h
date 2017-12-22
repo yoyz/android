@@ -350,7 +350,7 @@ enum {
 
 
 #ifndef SCREEN_MULT 
-#define SCREEN_MULT     1
+#define SCREEN_MULT     3
 #endif
 // BEGIN DINGOO A320 SDL use by linux too
 

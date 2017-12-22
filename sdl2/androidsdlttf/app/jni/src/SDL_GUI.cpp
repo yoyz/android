@@ -187,7 +187,7 @@ int SDL_GUI::initVideo()
                             SDL_WINDOWPOS_UNDEFINED,
                             640, 480,
                             SDL_WINDOW_SHOWN);
-
+  //renderer = SDL_CreateRenderer(window, -1, 0);
   fprintf(stderr,"After SDL_CreateWindow\n");
   if (window == NULL) {
     // In the case that the window could not be made...
@@ -221,7 +221,7 @@ void SDL_GUI::refresh()
 {
   DPRINTF("SDL_GUI::refresh()");
   SDL_UpdateWindowSurface( window );
-  //SDL_RenderPresent(screen);
+  SDL_RenderPresent(renderer);
 }
 #endif // __SDL20__
 
@@ -240,11 +240,11 @@ void SDL_GUI::clearScreen()
 #ifdef __SDL20__
 void SDL_GUI::clearScreen()
 {
+  
   extern int32_t * pal;
   DPRINTF("SDL_GUI::clearScreen()");
   //SDL_FillRect(screen,NULL, 0x000000);
   SDL_FillRect(screen,NULL, SDL_MapRGB(screen->format, (pal[8]&0xFF0000)>>16,(pal[8]&0x00FF00)>>8,(pal[8]&0x0000FF)>>0));
-	//SDL_FillRect(screen,NULL, pal[8]);
 }
 #endif
 

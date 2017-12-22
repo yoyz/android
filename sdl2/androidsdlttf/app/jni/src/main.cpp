@@ -190,16 +190,15 @@ int main(int argc, char *argv[])
       
       SG.clearScreen();                 // remove all 
       //SG.drawBoxNumber(0,pal[ENABLEDBOX_COLOR]);
-      //SG.drawBoxNumber(15,pal[ENABLEDBOX_COLOR]);
-      //SG.smallBoxNumber(i,200,j,pal[ENABLEDBOX_COLOR]);
+      if (i>14) i=0;
+      j++;
+      if (j>500) j=0;
+
+      SG.drawBoxNumber(i,pal[ENABLEDBOX_COLOR]);
       SG.guiTTFText(200,j,txt_tab[i]);
       SG.refresh();
       
       //SDL_Delay(1);
-      //i++;
-      if (i>14) i=0;
-      j++;
-      if (j>500) j=0;
       __android_log_print(ANDROID_LOG_INFO, "SDL", "Something happened! i = %d j = %d ", i, j);
     }
   //stop_process();
