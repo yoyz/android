@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "opensl_io.h"
 #include "SDL_GUI.h"
+#include <android/log.h>
 #define BUFFERFRAMES 1024
 #define VECSAMPS_MONO 64
 #define VECSAMPS_STEREO 128
@@ -109,8 +110,16 @@ int main(int argc, char *argv[])
 
   SDL_Joystick *joystick;
   SDL_GUI      SG;
-  SG.initVideo();
   int i=0;
+  int j=0;
+  
+  static const char * txt_tab[] =
+    {
+      "00","01","02","03","04","05","06","07","08","09","0A","0B","0C","0D","0E","0F"
+    };
+
+  SG.initVideo();
+  SG.openTTFFont();
   /*
    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s\n", SDL_GetError());
@@ -180,13 +189,18 @@ int main(int argc, char *argv[])
       /* Update the screen! */
       
       SG.clearScreen();                 // remove all 
-      SG.drawBoxNumber(i,pal[ENABLEDBOX_COLOR]);
+      //SG.drawBoxNumber(0,pal[ENABLEDBOX_COLOR]);
+      //SG.drawBoxNumber(15,pal[ENABLEDBOX_COLOR]);
+      //SG.smallBoxNumber(i,200,j,pal[ENABLEDBOX_COLOR]);
+      SG.guiTTFText(200,j,txt_tab[i]);
       SG.refresh();
       
       //SDL_Delay(1);
       //i++;
-      if (i>4) i=0;
-      
+      if (i>14) i=0;
+      j++;
+      if (j>500) j=0;
+      __android_log_print(ANDROID_LOG_INFO, "SDL", "Something happened! i = %d j = %d ", i, j);
     }
   //stop_process();
   //SDL_WaitThread(thread, &threadReturnValue);
