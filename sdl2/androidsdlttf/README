@@ -7,9 +7,14 @@ As user
 =======
 
 $ ./gradlew assembleDebug
+or 
+$ V=1  ./gradlew assembleDebug
 $ ls ./app/build/outputs/apk/app-debug.apk
 $ adb install -r ./app/build/outputs/apk/app-debug.apk
 $ ./gradlew clean
+
+$ find .|grep apk
+$ adb logcat|grep SDL
 
 SDL Android doc
 ===============
