@@ -10,3 +10,10 @@ $ ./gradlew assembleDebug
 $ ls ./app/build/outputs/apk/app-debug.apk
 $ ./gradlew clean
 
+Note
+====
+
+export ANDROID_HOME=/home/yoyz/local/Android/Sdk/
+export ANDROID_NDK_HOME=/home/yoyz/local/Android/Sdk/ndk-bundle/
+ln -s ~/build/SDL2 .
+
