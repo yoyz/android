@@ -130,7 +130,7 @@ public class SDLActivity extends Activity implements View.OnSystemUiVisibilityCh
      */
     protected String getMainFunction() {
         //return "SDL_main";
-        return "main";
+        return "SDL_main";
     }
 
     /**

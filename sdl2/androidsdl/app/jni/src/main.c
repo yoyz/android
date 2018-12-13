@@ -63,7 +63,7 @@ Sprite LoadSprite(const char* file, SDL_Renderer* renderer)
   temp = SDL_LoadBMP(file);
   if (temp == NULL)
     {
-      fprintf(stderr, "Couldn't load %s: %s\n", file, SDL_GetError());
+      SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't load bmp");
       return result;
     }
   result.w = temp->w;
@@ -72,8 +72,8 @@ Sprite LoadSprite(const char* file, SDL_Renderer* renderer)
   /* Create texture from the image */
   result.texture = SDL_CreateTextureFromSurface(renderer, temp);
   if (!result.texture) {
-    fprintf(stderr, "Couldn't create texture: %s\n", SDL_GetError());
-    SDL_FreeSurface(temp);
+
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't create texture: %s\n", SDL_GetError());
     return result;
   }
   SDL_FreeSurface(temp);
@@ -103,7 +103,8 @@ int main(int argc, char *argv[])
   int           audio_started=0;
 
   SDL_Joystick *joystick;
-
+//int i;
+//while (1) i++;
    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK) < 0) {
        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s\n", SDL_GetError());
        exit(1);
@@ -111,12 +112,17 @@ int main(int argc, char *argv[])
   joystick = SDL_JoystickOpen(0);
   
   if(SDL_CreateWindowAndRenderer(0, 0, 0, &window, &renderer) < 0)
-    exit(2);
+  {
+   SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Couldn't initialize SDL: %s\n", SDL_GetError());
+   exit(2);
+  }
   
   Sprite sprite = LoadSprite("image.bmp", renderer);
   if(sprite.texture == NULL)
+  {
+    SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "could not load: mage.bmp");
     exit(2);
-  
+  }  
 
 
   if (audio_started==0)
